@@ -1,4 +1,6 @@
 const express = require('express'); //inherited express class from library 
+const connectDB = require('./config/db');
+
 // const mongoose = require('mongoose');
 
 // const users = require('./routes/api/users');
@@ -7,6 +9,7 @@ const express = require('express'); //inherited express class from library
 
 const app = express(); // created object of express class 
 
+connectDB();
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
@@ -26,3 +29,4 @@ app.get('/', (req, res) => res.send('Hello World')); //simple get method on our 
 const port = process.env.PORT || 5000; // built port 
 
 app.listen(port, () => console.log(`Server running on port ${port}`));
+ 
