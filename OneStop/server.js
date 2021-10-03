@@ -1,15 +1,19 @@
 const express = require('express'); //inherited express class from library 
 const connectDB = require('./config/db');
 
-// const mongoose = require('mongoose');
+ const mongoose = require('mongoose');
 
-// const users = require('./routes/api/users');
-// const profile = require('./routes/api/profile');
-// const posts = require('./routes/api/posts');
+ const users = require('./routes/api/users');
+ const profile = require('./routes/api/profile');
+ const posts = require('./routes/api/posts');
 
 const app = express(); // created object of express class 
 
 connectDB();
+
+// init middleware
+app.use(express.json({extended:false}));
+
 // DB Config
 // const db = require('./config/keys').mongoURI;
 
@@ -21,10 +25,10 @@ connectDB();
 
 app.get('/', (req, res) => res.send('Hello World')); //simple get method on our object 
 
-// // Use Routes
-// app.use('/api/users', users);
-// app.use('/api/profile', profile);
-// app.use('/api/posts', posts);
+// Use Routes
+ app.use('/api/users', users);
+ app.use('/api/profile', profile);
+ app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000; // built port 
 
