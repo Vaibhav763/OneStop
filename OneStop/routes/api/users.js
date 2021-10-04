@@ -13,8 +13,8 @@ const User = require('../../models/User');   // fetched User model from our mode
 // @desc     Register user
 // @access   Public
 
-//  intially verifying weather entered details by user
-//  are correct or not using express validator
+//  intially verifying weather entered details by user are correct 
+// or not using express validator and result get saved in "validationResult"
 
 router.post(
   '/',
@@ -97,3 +97,4 @@ router.post(
 );
 
 module.exports = router;
+

@@ -1,30 +1,29 @@
-const express = require('express'); //inherited express class from library 
+const express = require('express'); 
 
 // connecting mongo DB
 const connectDB = require('./config/db');
 connectDB();
 
+// imported routes from different route files
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 
-const app = express(); // created object of express class 
+const app = express(); 
 
-//simple get method on our object so that our server response something when browser making a request to it 
-app.get('/', (req, res) => res.send('Hello World')); 
-
-const port = process.env.PORT || 5000; // choosing the server address (port)
-
-// http request sent to our server for particular port using listen method
-app.listen(port, () => console.log(`Server running on port ${port}`));
-
-// init middleware
+// middleware that allow us to handle raw json
 app.use(express.json({extended:false}));
 
-// Use Routes
+// Using different Routes as middleware
  app.use('/api/users', users);
  app.use('/api/profile', profile);
  app.use('/api/posts', posts);
+
+app.get('/', (req, res) => res.send('Hello World')); 
+
+const port = process.env.PORT || 5000; 
+
+app.listen(port, () => console.log(`Server running on port ${port}`));
 
 
  
