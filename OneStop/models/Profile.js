@@ -118,3 +118,10 @@ const ProfileSchema = new Schema({
 });
 
 module.exports = Profile = mongoose.model('profile', ProfileSchema);
+
+
+// in this file we have created Profile model that what data we required to make a profile
+
+// Profile is the model over here which we created and that gonna follow the defined Schema
+// mongoose.model('profile', ProfileSchema) = 
+// "profile" is the collection name which we created using the above defined schema i.e ProfileSchema

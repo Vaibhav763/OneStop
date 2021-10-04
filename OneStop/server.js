@@ -10,9 +10,12 @@ const posts = require('./routes/api/posts');
 
 const app = express(); // created object of express class 
 
-app.get('/', (req, res) => res.send('Hello World')); //simple get method on our object 
+//simple get method on our object so that our server response something when browser making a request to it 
+app.get('/', (req, res) => res.send('Hello World')); 
 
-const port = process.env.PORT || 5000; // built port 
+const port = process.env.PORT || 5000; // choosing the server address (port)
+
+// http request sent to our server for particular port using listen method
 app.listen(port, () => console.log(`Server running on port ${port}`));
 
 // init middleware

@@ -7,7 +7,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator');
 const normalize = require('normalize-url');
 
-const User = require('../../models/User');   // fetched User schema from our User model 
+const User = require('../../models/User');   // fetched User model from our model folder
 
 // @route    POST api/users
 // @desc     Register user
@@ -45,7 +45,7 @@ router.post(
           .json({ errors: [{ msg: 'User already exists' }] });
       }
 
-      // get users gravatar 
+      // get users gravatar (basically profile picture)
       const avatar = normalize(
         gravatar.url(email, {
           s: '200',
@@ -55,7 +55,9 @@ router.post(
         { forceHttps: true }
       );
 
-      // creating new user in our database with entered values
+      // creating new user document(basically record) in our database 
+      // with entered values using the User model that we have created 
+      // in of User.js Model folder 
       user = new User({
         name,
         email,
