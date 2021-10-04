@@ -74,21 +74,21 @@ router.post(
 
     // creating json web token for authenication and logging in purpose
 
-    //   const payload = {
-    //     user: {
-    //       id: user.id
-    //     }
-    //   };
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
 
-    //   jwt.sign(
-    //     payload,
-    //     config.get('jwtSecret'),
-    //     { expiresIn: '5 days' },
-    //     (err, token) => {
-    //       if (err) throw err;
-    //       res.json({ token });
-    //     }
-    //   );
+      jwt.sign(
+        payload,
+        config.get('jwtSecret'),
+        { expiresIn: '5 days' },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       console.error(err.message);
       res.status(500).send('Server error');
