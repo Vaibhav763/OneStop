@@ -1,9 +1,11 @@
 const express = require('express');
 const config = require('config');
 const router = express.Router();
-const auth = require('../../middleware/auth');
 const { check, validationResult } = require('express-validator');
 
+// Loading middlewares
+const auth = require('../../middleware/auth');
+const checkObjectId = require('../../middleware/checkObjectId');
 
 // Load Profile Model
 const Profile = require('../../models/Profile');
@@ -128,6 +130,7 @@ router.get('/', async (req, res) => {
 // @access   Public
 router.get(
     '/user/:user_id',
+    checkObjectId('user_id'),
     async (req, res) => {
       try {
         const profile = await Profile.findOne({
@@ -139,9 +142,6 @@ router.get(
         return res.json(profile);
       } catch (err) {
         console.error(err.message);
-        if(err.kind == 'ObjectId')
-        return res.status(400).json({ msg: 'Profile not found' });
-        
         return res.status(500).json({ msg: 'Server error' });
       }
     }
