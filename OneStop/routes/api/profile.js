@@ -90,7 +90,7 @@ router.post(
         if (facebook) profileFields.social.facebook = facebook;
         if (linkedin) profileFields.social.linkedin = linkedin;
         if (instagram) profileFields.social.instagram = instagram;
-        
+
       try {
         // Using upsert option (creates new doc if no match is found):
         let profile = await Profile.findOneAndUpdate(
@@ -106,5 +106,19 @@ router.post(
     }
   );
 
+
+  
+// @route    GET api/profile
+// @desc     Get all profiles
+// @access   Public
+router.get('/', async (req, res) => {
+    try {
+      const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+      res.json(profiles);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  });
 
 module.exports = router;
