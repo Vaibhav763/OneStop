@@ -294,10 +294,9 @@ router.put(
     }
   );
 
-    // @route    DELETE api/profile/education/:edu_id
-    // @desc     Delete education from profile
-    // @access   Private
-
+// @route    DELETE api/profile/education/:edu_id
+// @desc     Delete education from profile
+// @access   Private
 router.delete('/education/:edu_id',
     auth,
     checkObjectId('edu_id'),
