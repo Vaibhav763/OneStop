@@ -79,3 +79,6 @@ router.post(
 );
 
 module.exports = router;
+
+// this file is for login purpose 
+// its verifying the entered mail and password with the previous registerd user
