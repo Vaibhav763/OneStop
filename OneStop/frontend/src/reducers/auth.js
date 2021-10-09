@@ -9,6 +9,8 @@ import {
   // ACCOUNT_DELETED
 } from '../actions/types';
 
+import setAuthToken from './utils/setAuthToken';
+
 // token is stored in local storage using Javascript  
 const initialState = {
   token: localStorage.getItem('token'),
@@ -24,6 +26,7 @@ function authReducer(state = initialState, action) {
   switch (type) {
     
     case REGISTER_SUCCESS:
+      
       return {
         ...state,
         ...payload,

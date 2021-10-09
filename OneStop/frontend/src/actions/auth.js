@@ -15,7 +15,7 @@ export const register = formData => async dispatch => {
       type: REGISTER_SUCCESS,
       payload: res.data
     });
-    dispatch();
+    
   } catch (err) {
 
   // errors array that we get if we forget something to enter(similar to postman)
