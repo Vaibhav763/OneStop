@@ -1,15 +1,13 @@
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
-  // USER_LOADED,
-  // AUTH_ERROR,
+  USER_LOADED,
+  AUTH_ERROR,
   // LOGIN_SUCCESS,
   // LOGIN_FAIL,
   // LOGOUT,
   // ACCOUNT_DELETED
 } from '../actions/types';
-
-import setAuthToken from './utils/setAuthToken';
 
 // token is stored in local storage using Javascript  
 const initialState = {
@@ -25,8 +23,15 @@ function authReducer(state = initialState, action) {
 
   switch (type) {
     
+    case USER_LOADED:
+      return {
+        ...state,
+        user: payload,
+        isAuthenticated: true,
+        loading: false
+      };
     case REGISTER_SUCCESS:
-      
+      // localStorage.setItem('token',payload.token);
       return {
         ...state,
         ...payload,
@@ -35,6 +40,8 @@ function authReducer(state = initialState, action) {
       };
     
     case REGISTER_FAIL:
+    case AUTH_ERROR:
+      // localStorage.removeItem('token');
       return {
         ...state,
         token: null,
