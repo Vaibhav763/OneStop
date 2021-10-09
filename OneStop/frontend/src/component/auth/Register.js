@@ -1,13 +1,13 @@
 import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
+import PropTypes from 'prop-types';
 
 // connect is used to link this component with redux
 import { connect } from 'react-redux';
 
-import { Link, Redirect } from 'react-router-dom';
-import { setAlert } from '../../actions/alert';
-import PropTypes from 'prop-types';
-
-const Register = ({ setAlert}) => {
+const Register = ({ setAlert , register}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,22 +15,26 @@ const Register = ({ setAlert}) => {
     password2: ''
   });
 
+  // destructured all values from our object
   const { name, email, password, password2 } = formData;
 
+  // function to store the input values(e.target values) to our state
   const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value});
+
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Passwords do not match', 'danger');  
-    //this will pass this msg to our alert action which in turn 
-    // dispatch our type to change state
+      setAlert('Passwords do not match', 'danger');  //*
     } else {
-      console.log(e);
+      register({name,email,password});
     }
   };
 
+  // * = 
+  // this will pass this msg to our alert action (basically calls our setAlert function in action) 
+  //  which in turn dispatch our type to change state 
 
   return (
     <Fragment>
@@ -92,9 +96,10 @@ const Register = ({ setAlert}) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register})(Register);
 
 // connect takes two argument first the state we wanna map and other the object with actions
