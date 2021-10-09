@@ -15,8 +15,7 @@ const Register = ({ setAlert , register}) => {
     password2: ''
   });
 
-  // destructured all values from our object
-  const { name, email, password, password2 } = formData;
+const { name, email, password, password2 } = formData;
 
   // function to store the input values(e.target values) to our state
   const onChange = (e) =>
@@ -32,10 +31,6 @@ const Register = ({ setAlert , register}) => {
       console.log(e);
     }
   };
-
-  // * = 
-  // this will pass this msg to our alert action (basically calls our setAlert function in action) 
-  //  which in turn dispatch our type to change state 
 
   return (
     <Fragment>
@@ -100,7 +95,11 @@ Register.propTypes = {
   register: PropTypes.func.isRequired,
 };
 
-
 export default connect(null, { setAlert, register})(Register);
 
 // connect takes two argument first the state we wanna map and other the object with actions
+
+
+ // * = 
+  // this will pass this msg to our alert action (basically calls our setAlert function in action) 
+  //  which in turn dispatch our type to change state 
