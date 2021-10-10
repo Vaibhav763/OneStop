@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 // connect is used to link this component with redux
 import { connect } from 'react-redux';
 
-const Register = ({ setAlert , register}) => {
+const Register = ({ setAlert , register ,isAuthenticated}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,6 +32,9 @@ const { name, email, password, password2 } = formData;
     }
   };
 
+  if (isAuthenticated) {
+    return <Redirect to="/dashboard" />;
+  }
   return (
     <Fragment>
       <section className="container">
@@ -93,9 +96,14 @@ const { name, email, password, password2 } = formData;
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert, register})(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register})(Register);
 
 // connect takes two argument first the state we wanna map and other the object with actions
 
