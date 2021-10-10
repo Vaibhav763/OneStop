@@ -9,7 +9,6 @@ const ProfileSchema = new Schema({
   },
   handle: {
     type: String,
-    required: true,
     max: 40
   },
   company: {
@@ -50,7 +49,6 @@ const ProfileSchema = new Schema({
       },
       from: {
         type: Date,
-        required: true
       },
       to: {
         type: Date
