@@ -7,6 +7,7 @@ import {
   AUTH_ERROR,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  CLEAR_PROFILE,
   LOGOUT
 } from './types';
 
@@ -80,4 +81,11 @@ export const login = (email, password) => async dispatch => {
 
 
 // Logout
-export const logout = () => ({ type: LOGOUT });
+export const logout = () => async dispatch =>{
+dispatch ({ type: LOGOUT });
+dispatch ({type:CLEAR_PROFILE});
+}
+
+/** action file basically help us to get/post data from/to our database 
+  (similar to POSTMAN ) and the response get stored to payload ,
+  which is then passed to reducer to change the state of our component */
