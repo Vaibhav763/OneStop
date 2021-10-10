@@ -50,6 +50,7 @@ const { name, email, password, password2 } = formData;
             name="name"
             value={name}
             onChange={onChange}
+            required
           />
         </div>
         <div className="form-group">
@@ -59,6 +60,7 @@ const { name, email, password, password2 } = formData;
             name="email"
             value={email}
             onChange={onChange}
+            required
           />
           <small className="form-text">
             This site uses Gravatar so if you want a profile image, use a
@@ -72,6 +74,7 @@ const { name, email, password, password2 } = formData;
             name="password"
             value={password}
             onChange={onChange}
+            minLength="6"
           />
         </div>
         <div className="form-group">
@@ -81,6 +84,7 @@ const { name, email, password, password2 } = formData;
             name="password2"
             value={password2}
             onChange={onChange}
+            minLength="6"
           />
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />

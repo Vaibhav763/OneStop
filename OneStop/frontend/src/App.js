@@ -1,31 +1,28 @@
+import React , {useEffect} from 'react';
 import Navbar from './component/layout/Navbar';
 import Landing from './component/layout/Landing';
 import Login from './component/auth/Login';
 import Register from './component/auth/Register';
 import Alert from './component/layout/Alert';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import './App.css';
+import Dashboard from './component/dashboard/Dashboard';
+import PrivateRoute from './component/routing/PrivateRoute';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
 import store from './store'
 import { loadUser } from './actions/auth';
 import setAuthToken from './utils/setAuthToken';
-import React , {useEffect} from 'react';
 
 import './App.css';
 
 const App = () => {
   useEffect(() => {
-    // check for token in LS
+    // check for token in localstorage
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
     store.dispatch(loadUser());
-
-    // // log user out from all tabs if they log out in one tab
-    // window.addEventListener('storage', () => {
-    //   if (!localStorage.token) store.dispatch({ type: LOGOUT });
-    // });
   }, []);
+
   return (
     <Provider store={store}>
     <Router>
@@ -36,6 +33,7 @@ const App = () => {
       <Switch>
         <Route exact path='/login'> <Login/></Route>
         <Route exact path='/register'> <Register/></Route>
+        <PrivateRoute exact path='/dashboard' component={Dashboard}></PrivateRoute>
       </Switch>
     </div>
     </Router>
