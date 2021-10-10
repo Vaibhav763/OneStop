@@ -5,6 +5,7 @@ import Login from './component/auth/Login';
 import Register from './component/auth/Register';
 import Alert from './component/layout/Alert';
 import Dashboard from './component/dashboard/Dashboard';
+import ProfileForm from './component/profile_forms/ProfileForm';
 import PrivateRoute from './component/routing/PrivateRoute';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Provider} from 'react-redux';
@@ -34,6 +35,7 @@ const App = () => {
         <Route exact path='/login'> <Login/></Route>
         <Route exact path='/register'> <Register/></Route>
         <PrivateRoute exact path='/dashboard' component={Dashboard}></PrivateRoute>
+        <PrivateRoute exact path='/create_profile' component={ProfileForm}></PrivateRoute>
       </Switch>
     </div>
     </Router>
