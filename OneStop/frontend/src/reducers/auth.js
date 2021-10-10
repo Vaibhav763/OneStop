@@ -6,6 +6,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
+  ACCOUNT_DELETED
 } from '../actions/types';
 
 // token is stored in local storage using Javascript  
@@ -43,6 +44,7 @@ function authReducer(state = initialState, action) {
     case LOGIN_FAIL:
     case AUTH_ERROR:
     case LOGOUT:
+    case ACCOUNT_DELETED:
       // localStorage.removeItem('token');
       return {
         ...state,
