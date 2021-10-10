@@ -3,7 +3,7 @@ import {
   PROFILE_ERROR,
   CLEAR_PROFILE,
   UPDATE_PROFILE,
-  // GET_PROFILES,
+  GET_PROFILES,
   // GET_REPOS,
   // NO_REPOS
 } from '../actions/types';
@@ -27,6 +27,14 @@ function profileReducer(state = initialState, action) {
         profile: payload,
         loading: false
       };
+
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: payload,
+        loading: false
+      };
+      
     case PROFILE_ERROR:
       return {
         ...state,
