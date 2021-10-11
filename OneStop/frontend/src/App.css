@@ -584,3 +584,22 @@ button {
     padding: 0.3rem 0.4rem;
   }
 }
+
+.loading-container {
+  width: 600px;
+  height: 500px;
+  margin-left: 25%;
+}
+
+@media screen and (max-width: 1000px) {
+  .loading-container {
+    margin-left: 10%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .loading-container {
+    margin-left: 5%;
+    width: 310px;
+    height: 350px;
+  }
+}

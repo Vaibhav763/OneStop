@@ -6,7 +6,7 @@ import { getCurrentProfile,deleteAccount } from '../../actions/profile';
 import About from './About';
 import Experience from './Experience';
 import Education from './Education';
-
+import Load from './load/Load'
 
 const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
   useEffect(() => {
@@ -27,7 +27,7 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
 
-            <div className="my-2">
+            <div className="my-3">
               <button className="btn btn-danger" onClick={() => deleteAccount()}>
                 <i className="fas fa-user-minus" /> Delete My Account
               </button>
@@ -36,9 +36,10 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
         ) : (
           <Fragment>
             <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create_profile" className="btn btn-primary my-1">
+            <Link to="/create_profile" className="btn btn-primary my-1 ">
               Create Profile
             </Link>
+            <Load/>
           </Fragment>
         )}
       </section>
