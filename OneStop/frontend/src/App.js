@@ -25,7 +25,7 @@ import './App.css';
 
 const App = () => {
   useEffect(() => {
-    // check for token in LS
+    // check for token in local storage
     if (localStorage.token) {
       setAuthToken(localStorage.token);
     }
@@ -47,12 +47,12 @@ const App = () => {
       <Switch>
         <Route exact path='/login'> <Login/></Route>
         <Route exact path='/register'> <Register/></Route>
-        <Route exact path='/profiles'> <Profiles/></Route>
-        <Route exact path='/profile/:id'> <Profile/></Route>
         <PrivateRoute exact path='/dashboard' component={Dashboard}></PrivateRoute>
         <PrivateRoute exact path='/create_profile' component={ProfileForm}></PrivateRoute>
         <PrivateRoute exact path='/add_experience' component={AddExperience}></PrivateRoute>
         <PrivateRoute exact path='/add_education' component={AddEducation}></PrivateRoute>
+        <PrivateRoute exact path='/profiles' component={Profiles}></PrivateRoute>
+        <PrivateRoute exact path='/profile/:id' component={Profile}></PrivateRoute>
         <PrivateRoute exact path="/posts" component={Posts} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <Route component={NotFound}></Route>

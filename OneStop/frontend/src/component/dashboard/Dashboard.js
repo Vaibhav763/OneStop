@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getCurrentProfile,deleteAccount } from '../../actions/profile';
-import DashboardActions from './DashboardActions';
+import About from './About';
 import Experience from './Experience';
 import Education from './Education';
+
 
 const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
   useEffect(() => {
@@ -21,8 +22,9 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
         </p>
         { profile !== null ? (
           <Fragment>
-           <DashboardActions />
-           <Experience experience={profile.experience} />
+
+            <About profile={profile} /> 
+            <Experience experience={profile.experience} />
             <Education education={profile.education} />
 
             <div className="my-2">
@@ -57,3 +59,4 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps, { getCurrentProfile })(Dashboard);
+

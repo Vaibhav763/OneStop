@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteExperience } from '../../actions/profile';
 import formatDate from '../../utils/formatDate';
 
@@ -38,6 +39,9 @@ const Experience = ({ experience, deleteExperience }) => {
         </thead>
         <tbody>{experiences}</tbody>
       </table>
+      <Link to='/add_experience' className='btn btn-light'>
+        <i className='fab fa-black-tie text-primary' /> Add Experience
+      </Link>
       </section>
     </Fragment>
   );

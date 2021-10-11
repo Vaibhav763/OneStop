@@ -108,11 +108,9 @@ router.post(
     }
   );
 
-
-  
 // @route    GET api/profile
 // @desc     Get all profiles
-// @access   Public
+// @access   Private
 router.get('/', async (req, res) => {
     try {
       const profiles = await Profile.find().populate('user', ['name', 'avatar']);
@@ -121,13 +119,13 @@ router.get('/', async (req, res) => {
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  });
-
+  }
+);
 
   
 // @route    GET api/profile/user/:user_id
 // @desc     Get profile by user ID
-// @access   Public
+// @access   Private
 router.get(
     '/user/:user_id',
     checkObjectId('user_id'),
@@ -223,7 +221,8 @@ router.put(
     // @desc     Delete experience from profile
     // @access   Private
 
-router.delete('/experience/:exp_id',
+router.delete(
+    '/experience/:exp_id',
     auth,
     checkObjectId('exp_id'),
     async (req, res) => {

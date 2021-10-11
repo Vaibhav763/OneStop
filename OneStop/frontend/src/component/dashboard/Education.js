@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteEducation } from '../../actions/profile';
 import formatDate from '../../utils/formatDate';
 
@@ -38,6 +39,9 @@ const Education = ({ education, deleteEducation }) => {
         </thead>
         <tbody>{educations}</tbody>
       </table>
+      <Link to='/add_education' className='btn btn-light'>
+        <i className='fas fa-graduation-cap text-primary' /> Add Education
+      </Link>
       </section>
     </Fragment>
   );

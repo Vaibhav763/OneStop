@@ -9,12 +9,12 @@ import ProfileExperience from './ProfileExperience';
 import ProfileEducation from './ProfileEducation';
 import { getProfileById } from '../../actions/profile';
 
-const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
+const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
 
   const {id} = useParams();
   useEffect(() => {
     getProfileById(id);
-  }, [getProfileById, id]);
+  }, [getProfileById,id]);
 
   return (
     <Fragment>
@@ -67,7 +67,7 @@ const Profile = ({ getProfileById, profile: { profile }, auth, match }) => {
                 <h4>No education credentials</h4>
               )}
             </div>
-{/* 
+            {/* 
             {profile.githubusername && (
               <ProfileGithub username={profile.githubusername} />
             )} */}
