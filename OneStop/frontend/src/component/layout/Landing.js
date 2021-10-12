@@ -2,6 +2,7 @@ import React from 'react';
 import { Link,Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import ParticlesBg from 'particles-bg';
 
 const Landing = ({isAuthenticated}) => {
 
@@ -11,7 +12,8 @@ const Landing = ({isAuthenticated}) => {
 
     return ( 
       <section className="landing">
-      <div className="dark-overlay">
+        <ParticlesBg num={20} type="circle" bg={true} />
+
         <div className="landing-inner">
           <h1 className="x-large">One Stop</h1>
           <p className="lead">
@@ -22,7 +24,6 @@ const Landing = ({isAuthenticated}) => {
             <Link to='/login' className="btn btn-light">Login</Link>
           </div>
         </div>
-      </div>
     </section>
      );
 }

@@ -342,7 +342,7 @@ button {
 /* Landing Page */
 .landing {
   position: relative;
-  background: url("./img/showcase.jpg") no-repeat center center/cover;
+  /* background: url("./img/showcase.jpg") no-repeat center center/cover; */
   height: 100vh;
 }
 
@@ -601,5 +601,16 @@ button {
     margin-left: 5%;
     width: 310px;
     height: 350px;
+  }
+}
+
+.box {
+  margin: 0 auto;
+  padding: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .box {
+    padding: 0px;
   }
 }

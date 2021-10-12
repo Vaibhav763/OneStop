@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
 import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
+import ParticlesBg from 'particles-bg';
 
 // connect is used to link this component with redux
 import { connect } from 'react-redux';
@@ -38,6 +39,8 @@ const { name, email, password, password2 } = formData;
   return (
     <Fragment>
       <section className="container">
+      <ParticlesBg num={3} type="fountain" bg={true} />
+      <div className="box">
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
@@ -92,6 +95,7 @@ const { name, email, password, password2 } = formData;
       <p className="my-1">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
+      </div>
       </section>
     </Fragment>
   );
