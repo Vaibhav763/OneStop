@@ -1,5 +1,6 @@
 import api from '../utils/api';
 import { setAlert } from './alert';
+import axios from 'axios';
 
 import {
   GET_PROFILE,
@@ -8,7 +9,7 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   GET_PROFILES,
-  // GET_REPOS,
+  GET_REPOS
   // NO_REPOS
 } from './types';
 
@@ -208,3 +209,21 @@ export const deleteAccount = () => async (dispatch) => {
     }
   }
 };
+
+// get github repos of a user
+export const getGithubRepos = (username) => async dispatch => {
+  try {
+      const res = await axios.get(`/api/profile/github/${username}`);
+
+      dispatch({
+          type: GET_REPOS,
+          payload: res.data
+      })
+
+  } catch (err) {
+      dispatch({
+          type: PROFILE_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+      });
+  }
+}
