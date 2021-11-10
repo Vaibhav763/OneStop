@@ -327,7 +327,7 @@ module.exports = router;
 router.get("/github/:username", (req, res) => {
   try {
       const options = {
-          uri: `https://api.github.com/users/${req.params.username}/repos?sort=created:asc&client_id=${config.get("githubClientID")}&githubSecret=${config.get("githubSecret")}`,
+          uri: `https://api.github.com/users/${req.params.username}/repos?sort=created:asc&client_id=${config.get("githubClientID")}&githubSecret=${config.get("githubSecret")}`,             // add this in queries to limit repo count per_page=5
           method: "GET",
           headers: {"user-agent": "node.js"}
       }
