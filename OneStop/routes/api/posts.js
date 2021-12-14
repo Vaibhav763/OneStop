@@ -10,7 +10,8 @@ const auth = require('../../middleware/auth');
 const Post = require('../../models/Post');
 // Load User Model
 const User = require('../../models/User');
-
+// Load Topic Model
+const Topic = require('../../models/Topic');
 
 // @route    POST api/posts
 // @desc     Create a post
@@ -111,8 +112,6 @@ router.delete('/:id',
       res.status(500).send('Server Error');
     }
 });
-
-
 
 // @route    PUT api/posts/like/:id
 // @desc     Like a post
@@ -248,5 +247,41 @@ router.delete(
     return res.status(500).send('Server Error');
   }
 });
+
+/**
+ * @route   POST api/posts/topics
+ * @desc    create topics
+ * @access  private
+ */
+router.post('/topics', auth, check('topics', 'Array expected').notEmpty() , async (req, res) => {
+  const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+  try {
+    const {topics} = req.body;
+    const tps = topics.split(',').map(topic => topic.trim());
+    for(let i=0;i<tps.length;i++){
+      const topicField = {title: tps[i]};
+      const ftopic = await Topic.find({title: topicField.title});
+      console.log(ftopic.length, tps[i]);
+      if(ftopic.length == 0){
+        const tp = new Topic(topicField);
+        await tp.save();
+      }
+    }
+    const topicAll = await Topic.find();
+    res.json(topicAll);
+  } catch (err) {
+    console.error(err.message);
+    return res.status(500).send('Server Error');
+  }
+})
+
+
+
+
+
+
 
 module.exports = router;

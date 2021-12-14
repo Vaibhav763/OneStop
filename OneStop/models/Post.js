@@ -25,7 +25,15 @@ const PostSchema = new Schema({
       }
     }
   ],
-  comments: [
+  topics: [
+    {
+      topic: {
+        type: Schema.Types.ObjectId,
+        ref: 'topic'
+      }
+    }
+  ],
+  answers: [
     {
       user: {
         type: Schema.Types.ObjectId,
@@ -44,7 +52,23 @@ const PostSchema = new Schema({
       date: {
         type: Date,
         default: Date.now
-      }
+      },
+      upvotes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          }
+        }
+      ],
+      downvotes: [
+        {
+          user: {
+            type: Schema.Types.ObjectId,
+            ref: 'users'
+          }
+        }
+      ],
     }
   ],
   date: {
