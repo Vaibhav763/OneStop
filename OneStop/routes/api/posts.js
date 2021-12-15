@@ -250,26 +250,72 @@ router.delete(
 });
 
 /**
- * @route   POST api/posts/comment/upvote/:commentid
+ * @route   PUT api/posts/comment/upvote/:id/:comment_id
  * @desc    upvote a comment
  * @access  private
  */
+router.put("/comment/upvote/:id/:comment_id", auth, checkObjectId('id'), async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if(!post){
+      return res.status(404).send("Post does not exist");
+    }
+    for(let i=0;i<post.comments.length;i++){
+      if(req.params.comment_id === post.comments[i]._id){
+        // check if downvoted
+        if(post.comment[i].downvotes.some((downvote) => downvote.user.toString() === req.user.id)){
+          post.comment[i].downvotes = post.comment[i].downvotes.filter((downvote) => downvote.user.toString() != req.user.id);
+        }
+        // check if not already upvoted
+        if(!post.comment[i].upvotes.some((upvote) => upvote.user.toString() === req.user.id)){
+          post.comments[i].upvotes.unshift({ user: req.user.id});
+        }
+        return res.json({upvotes: post.comment[i].upvotes, downvotes: post.comment[i].downvotes});
+      }
+    }
+  } catch (err) {
+    return res.status(500).send("Server Error");
+  }
+});
+
 
 /**
- * @route   POST api/posts/comment/unupvote/:commentid
+ * @route   POST api/posts/comment/unupvote/:id/:comment_id
  * @desc    remove upvote from a comment
  * @access  private
  */
 
 /**
- * @route   POST api/posts/comment/downvote/:commentid
+ * @route   POST api/posts/comment/downvote/:id/:comment_id
  * @desc    downvote a comment
  * @access  private
  */
-
+ router.put("/comment/downvote/:id/:comment_id", auth, checkObjectId('id'), async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id);
+    if(!post){
+      return res.status(404).send("Post does not exist");
+    }
+    for(let i=0;i<post.comments.length;i++){
+      if(req.params.comment_id === post.comments[i]._id){
+        // check if upvoted
+        if(post.comment[i].upvotes.some((upvote) => upvote.user.toString() === req.user.id)){
+          post.comment[i].upvotes = post.comment[i].upvotes.filter((upvote) => upvote.user.toString() != req.user.id);
+        }
+        // check if not already downvoted
+        if(!post.comment[i].downvotes.some((downvote) => downvote.user.toString() === req.user.id)){
+          post.comments[i].downvotes.unshift({ user: req.user.id});
+        }
+        return res.json({upvotes: post.comment[i].upvotes, downvotes: post.comment[i].downvotes});
+      }
+    }
+  } catch (err) {
+    return res.status(500).send("Server Error");
+  }
+});
 
 /**
- * @route   POST api/posts/comment/undownvote/:commentid
+ * @route   POST api/posts/comment/undownvote/:id/:comment_id
  * @desc    remove downvote from comment
  * @access  private
  */
@@ -308,9 +354,8 @@ router.post('/topics', auth, check('topics', 'Array expected').notEmpty() , asyn
 /**
  * @route   GET api/posts/all/topics
  * @desc    get topics
- * @access  private
+ * @access  public
  */
-
 router.get("/all/topics", async (req, res) => {
   try {
     const topics = await Topic.find().sort({title: 1});
