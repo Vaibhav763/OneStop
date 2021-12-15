@@ -7,6 +7,7 @@ import PostItem from '../posts/PostItem';
 import CommentForm from '../post/CommentForm';
 import CommentItem from '../post/CommentItem';
 import { getPost } from '../../actions/post';
+import AnswerItem from './AnswerItem';
 
 const Post = ({ getPost, post: { post, loading }, match }) => {
   useEffect(() => {
@@ -25,8 +26,12 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
       <CommentForm postId={post._id} />
       <div className="comments">
         {post.comments.map((comment) => (
-          <CommentItem key={comment._id} comment={comment} postId={post._id} />
+          <Fragment>
+            {/* <CommentItem key={comment._id} comment={comment} postId={post._id} /> */}
+            <AnswerItem key={comment._id} comment={comment} postId={post._id} />
+          </Fragment>
         ))}
+        
       </div>
       </section>
     </Fragment>
