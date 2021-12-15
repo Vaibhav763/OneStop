@@ -25,14 +25,10 @@ const PostSchema = new Schema({
       }
     }
   ],
-  topics: [
-    {
-      topic: {
-        type: Schema.Types.ObjectId,
-        ref: 'topic'
-      }
-    }
-  ],
+  topic: {
+    type: Schema.Types.ObjectId,
+    ref: 'topic'
+  },
   comments: [
     {
       user: {

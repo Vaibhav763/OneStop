@@ -28,12 +28,13 @@ router.post(
 
     try {
       const user = await User.findById(req.user.id).select('-password');
-
+      // console.log(req.body.topic);
       const newPost = new Post({
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
+        topic: req.body.topic
       });
 
       const post = await newPost.save();
@@ -249,6 +250,32 @@ router.delete(
 });
 
 /**
+ * @route   POST api/posts/comment/upvote/:commentid
+ * @desc    upvote a comment
+ * @access  private
+ */
+
+/**
+ * @route   POST api/posts/comment/unupvote/:commentid
+ * @desc    remove upvote from a comment
+ * @access  private
+ */
+
+/**
+ * @route   POST api/posts/comment/downvote/:commentid
+ * @desc    downvote a comment
+ * @access  private
+ */
+
+
+/**
+ * @route   POST api/posts/comment/undownvote/:commentid
+ * @desc    remove downvote from comment
+ * @access  private
+ */
+
+
+/**
  * @route   POST api/posts/topics
  * @desc    create topics
  * @access  private
@@ -276,11 +303,24 @@ router.post('/topics', auth, check('topics', 'Array expected').notEmpty() , asyn
     console.error(err.message);
     return res.status(500).send('Server Error');
   }
-})
+});
 
+/**
+ * @route   GET api/posts/all/topics
+ * @desc    get topics
+ * @access  private
+ */
 
-
-
+router.get("/all/topics", async (req, res) => {
+  try {
+    const topics = await Topic.find().sort({title: 1});
+    // console.log(topics);
+    res.json(topics);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
 
 

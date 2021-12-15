@@ -3,15 +3,17 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
 
-const PostForm = ({ addPost }) => {
+const PostForm = ({ addPost, topics }) => {
   const [text, setText] = useState('');
+  const [topic, setTopic] = useState(null);
 
   const onChange = (e) =>
   setText(e.target.value);
 
+
   const onSubmit = async (e) => {
     e.preventDefault();
-    addPost({ text });
+    addPost({ text, topic });
     setText('');
   };
 
@@ -30,6 +32,12 @@ const PostForm = ({ addPost }) => {
           onChange={onChange}
           required
         />
+        <label htmlFor="topics">Choose a Topic:</label>
+        <select className='dropdown' name="topics" id="topics" onChange={(e) => {console.log(e.target.value);setTopic(e.target.value);}}>
+          {topics.map( (topic) => (
+            <option className='dropdown-item' key={topic._id} value={topic._id}>{topic.title}</option>
+          ) )}
+        </select>
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
       </form>
     </div>
@@ -37,7 +45,8 @@ const PostForm = ({ addPost }) => {
 };
 
 PostForm.propTypes = {
-  addPost: PropTypes.func.isRequired
+  addPost: PropTypes.func.isRequired,
+  topics: PropTypes.array.isRequired,
 };
 
 export default connect(null,{ addPost })(PostForm);
