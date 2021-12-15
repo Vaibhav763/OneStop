@@ -33,7 +33,7 @@ const PostSchema = new Schema({
       }
     }
   ],
-  answers: [
+  comments: [
     {
       user: {
         type: Schema.Types.ObjectId,
