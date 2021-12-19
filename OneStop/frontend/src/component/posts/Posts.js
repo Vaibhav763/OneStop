@@ -1,18 +1,25 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import PostItem from './PostItem';
 import PostForm from './PostForm';
 import { getPosts } from '../../actions/post';
 import { getTopics } from '../../actions/topic';
+import Spinner from '../layout/Spinner';
 
-const Posts = ({ getPosts, getTopics, post: { posts }, topic: {topics} }) => {
+const Posts = ({ getPosts, getTopics, post: { posts, loading }, topic: {topics} }) => {
+  const [filteredPosts, setPosts] = useState(posts);
+  const [text, setText] = useState('');
   useEffect(() => {
     getPosts();
     getTopics();
   }, [getPosts, getTopics]);
-
-  return (
+  const onChange = (e) => {
+    loading = true;
+    setPosts(posts.filter((post) => post.text.includes(e.target.value)));
+    loading = false;
+  }
+  return loading ? <Spinner/> : (
     <Fragment>
       <section className="container">
       <h1 className="large text-primary">Posts</h1>
