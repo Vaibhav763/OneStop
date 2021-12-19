@@ -53,8 +53,8 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
             <form onSubmit={onSubmit}>
               <InputGroup className="mb-3">
                 <FormControl
-                  placeholder="Filter by name/email"
-                  aria-label="Filter by name/email"
+                  placeholder="Filter by name/email or skills"
+                  aria-label="Filter by name/email or skills"
                   aria-describedby="basic-addon2"
                   value={text}
                   onChange={onChange}
