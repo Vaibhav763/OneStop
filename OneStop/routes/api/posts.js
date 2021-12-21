@@ -38,7 +38,7 @@ router.post(
       });
 
       const post = await newPost.save();
-
+      post.populate('topic', ['title']);
       res.json(post);
     } catch (err) {
       console.error(err.message);
@@ -76,7 +76,7 @@ router.get('/:id',
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' });
     }
-
+    post.populate('topic', ['title']);
     res.json(post);
   } catch (err) {
     console.error(err.message);

@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 import formatDate from '../../utils/formatDate';
 import { connect } from 'react-redux';
 import { addLike, removeLike, deletePost } from '../../actions/post';
+import Button from 'react-bootstrap/Button';
 
 const PostItem = ({
   addLike,
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date },
+  post: { _id, text, name, avatar, user, likes, comments, date, topic },
   showActions
 }) => (
-  <div className="post bg-white p-1 my-1">
+  <div className="post bg-white p-3 my-3">
     <div>
       <Link to={`/profile/${user}`}>
         <img className="round-img" src={avatar} alt="" />
@@ -22,6 +23,8 @@ const PostItem = ({
     </div>
     <div>
       <p className="my-1">{text}</p>
+      {topic && <Button className='my-2' variant='secondary' disabled='true'>{topic.title}</Button>}
+      
       <p className="post-date">Posted on {formatDate(date)}</p>
 
       {showActions && (

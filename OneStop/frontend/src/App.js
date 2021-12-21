@@ -22,6 +22,8 @@ import setAuthToken from './utils/setAuthToken';
 import { LOGOUT } from './actions/types';
 
 import './App.css';
+import Topics from './component/topics/Topics';
+import Questions from './component/questions/Questions';
 
 const App = () => {
   useEffect(() => {
@@ -53,8 +55,10 @@ const App = () => {
         <PrivateRoute exact path='/add_education' component={AddEducation}></PrivateRoute>
         <PrivateRoute exact path='/profiles' component={Profiles}></PrivateRoute>
         <PrivateRoute exact path='/profile/:id' component={Profile}></PrivateRoute>
-        <PrivateRoute exact path="/posts" component={Posts} />
+        <PrivateRoute exact path="/me/posts" component={Posts} />
+        <PrivateRoute exact path="/posts" component={Questions} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
+        <PrivateRoute exact path="/topics" component={Topics} />
         <Route component={NotFound}></Route>
       </Switch>
     </div>

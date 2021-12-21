@@ -3,15 +3,32 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { logout } from '../../actions/auth';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Tooltip from 'react-bootstrap/Tooltip';
 
 const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+        <OverlayTrigger
+          placement='bottom'
+          overlay={
+            <Tooltip id={`tooltip-bottom`}>
+              Ask a question.
+            </Tooltip>
+          }
+        >
+          <Link to="/me/posts"><i class="fas fa-plus-square"></i></Link>
+        </OverlayTrigger>
+      </li>
+      <li>
         <Link to="/profiles">Explore</Link>
       </li>
       <li>
         <Link to="/posts">Posts</Link>
+      </li>
+      <li>
+        <Link to="/topics">Topics</Link>
       </li>
       <li>
         <Link to="/dashboard">
