@@ -8,8 +8,7 @@ const CommentForm = ({ postId, addComment }) => {
   const str = `Type your answer here`;
   const [text, setText] = useState(str);
 
-  const onChange = (e) =>
-  setText(e.target.value)
+  // const onChange = (e) => setText(e.target.value)
 
   const onSubmit = async (e) => {
     e.preventDefault();

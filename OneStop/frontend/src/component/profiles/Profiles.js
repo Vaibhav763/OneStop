@@ -23,10 +23,6 @@ const Profiles = ({ getProfiles, profile: { profiles, loading } }) => {
   const [text, setText] = useState('');
   const onChange = (e) => {
     setText(e.target.value.toLowerCase());
-    // console.log(text);
-    // loading = true;
-    // setProfiles(profiles.filter((profile) => (profile.user.name.toLowerCase().includes(text) || profile.user.email.toLowerCase().includes(text))));
-    // loading = false;
   }
   const onSubmit = (e) => {
     e.preventDefault()

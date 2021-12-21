@@ -42,9 +42,9 @@ const App = () => {
     <Router>
     <div >
       <Navbar/>
-      <Route exact path='/'><Landing/></Route>
       <Alert/>
       <Switch>
+        <Route exact path='/'><Landing/></Route>
         <Route exact path='/login'> <Login/></Route>
         <Route exact path='/register'> <Register/></Route>
         <PrivateRoute exact path='/dashboard' component={Dashboard}></PrivateRoute>

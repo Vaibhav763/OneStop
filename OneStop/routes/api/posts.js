@@ -55,7 +55,7 @@ router.get('/', auth, async (req, res) => {
   try {
 
     // sorted post by descending order of posting date
-    const posts = await Post.find().sort({ date: -1 });
+    const posts = await Post.find().sort({ date: -1 }).populate('topic', ['title']);
     res.json(posts);
   } catch (err) {
     console.error(err.message);
