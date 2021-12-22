@@ -4,23 +4,26 @@ import {connect} from 'react-redux'
 import { useEffect } from 'react'
 import { getTopics } from '../../actions/topic'
 import Spinner from '../layout/Spinner'
+import TopicItem from './TopicItem'
 
-const Topics = ({ topic: {topics, loading}, post: {posts} }) => {
 
+const Topics = ({getTopics, topic, post: {posts} }) => {
     useEffect(() => {
-        getTopics()
-    }, []);
+        getTopics();
+    }, [getTopics]);
+
+    
 
     return (
         <Fragment>
-            {loading ? <Spinner/> : (
+            {topic.loading ? <Spinner/> : (
                 <div className="container">
                     <h1 className="text-primary large">Topics</h1>
                     <div className="container mt-5">
                         <div className="row">
-                            {topics.map((topic) => (
-                                <div className="col-12 col-md-4 col-lg-3">
-                                    { topic.title }
+                            {topic.topics.map((tpic) => (
+                                <div className="col-12 col-md-6 col-lg-4">
+                                    <TopicItem topic={tpic} />
                                 </div>
                             ))}
                         </div>
@@ -33,6 +36,7 @@ const Topics = ({ topic: {topics, loading}, post: {posts} }) => {
 }
 
 Topics.propTypes = {
+    getTopics: PropTypes.func.isRequired,
     topic: PropTypes.object.isRequired,
     post: PropTypes.object.isRequired
 }
@@ -42,4 +46,4 @@ const mapStateToProps = (state) => ({
     post: state.post
 })
 
-export default connect(mapStateToProps)(Topics);
+export default connect(mapStateToProps, {getTopics})(Topics);

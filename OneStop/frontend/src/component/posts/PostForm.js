@@ -34,6 +34,7 @@ const PostForm = ({ addPost, topics }) => {
         />
         <label htmlFor="topics">Choose a Topic:</label>
         <select className='dropdown' name="topics" id="topics" onChange={(e) => {console.log(e.target.value);setTopic(e.target.value);}}>
+          <option className='dropdown-item'>Select</option>
           {topics.map( (topic) => (
             <option className='dropdown-item' key={topic._id} value={topic._id}>{topic.title}</option>
           ) )}
