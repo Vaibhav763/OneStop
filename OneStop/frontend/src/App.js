@@ -24,6 +24,7 @@ import { LOGOUT } from './actions/types';
 import './App.css';
 import Topics from './component/topics/Topics';
 import Questions from './component/questions/Questions';
+import TopicPosts from './component/questions/TopicPosts';
 
 const App = () => {
   useEffect(() => {
@@ -59,6 +60,7 @@ const App = () => {
         <PrivateRoute exact path="/posts" component={Questions} />
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/topics" component={Topics} />
+        <PrivateRoute exact path="/posts/explore/:topic" component={TopicPosts} />
         <Route component={NotFound}></Route>
       </Switch>
     </div>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import axios from 'axios'
 import Button from 'react-bootstrap/Button'
+import { Link } from 'react-router-dom'
 
 const TopicItem = (topic) => {
     const [photos, setPhotos] = useState([]);
@@ -25,7 +26,7 @@ const TopicItem = (topic) => {
                     <h5 className="card-title">{topic.topic.title}</h5>
                     <p className="card-text">Followers: {topic.topic.followers.length}</p>
                     <Button className="btn btn-primary">Follow</Button>
-                    <Button className="btn btn-secondary ml-3">Explore</Button>
+                    <Link to={`/posts/explore/${topic.topic.title}`} className="btn btn-secondary ml-3">Explore</Link>
                 </div>
             </div>
         </Fragment>

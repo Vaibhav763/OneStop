@@ -9,19 +9,21 @@ import Spinner from '../layout/Spinner';
 import InputGroup from 'react-bootstrap/InputGroup';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import { useParams } from 'react-router-dom';
 
 
-const Questions = ({ getPosts, post: { posts, loading } }) => {
+const TopicPosts = ({ getPosts, post: { posts, loading } }) => {
   const [filteredPosts, setPosts] = useState(posts);
   const [text, setText] = useState('');
+  const {topic} = useParams();
   useEffect(() => {
     getPosts();
   }, [getPosts]);
 
   useEffect(() => {
-    setPosts(posts);
+    setPosts(posts.filter((post) => post.topic && post.topic.title === topic));
     // console.log("twice");
-  }, [posts]);
+  }, [posts, topic]);
 
   const onChange = (e) => {
     setText(e.target.value.toLowerCase());
@@ -54,7 +56,7 @@ const Questions = ({ getPosts, post: { posts, loading } }) => {
   return loading ? <Spinner/> : (
     <Fragment>
       <section className="container">
-      <h1 className="large text-primary">Questions</h1>
+      <h1 className="large text-primary">Questions related to {topic}</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
@@ -75,7 +77,7 @@ const Questions = ({ getPosts, post: { posts, loading } }) => {
               </InputGroup>
             </form>
           </div>
-        {filteredPosts.map((post) => (
+        {filteredPosts.length === 0 ? <h1>No questions found...</h1> : filteredPosts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}
       </div>
@@ -85,7 +87,7 @@ const Questions = ({ getPosts, post: { posts, loading } }) => {
 };
 
 
-Questions.propTypes = {
+TopicPosts.propTypes = {
   getPosts: PropTypes.func.isRequired,
   post: PropTypes.object.isRequired,
 };
@@ -94,4 +96,4 @@ const mapStateToProps = (state) => ({
   post: state.post
 });
 
-export default connect(mapStateToProps, { getPosts })(Questions);
+export default connect(mapStateToProps, { getPosts })(TopicPosts);
