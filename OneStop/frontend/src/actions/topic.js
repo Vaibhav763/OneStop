@@ -1,5 +1,5 @@
 import api from '../utils/api';
-import { GET_TOPICS, TOPIC_ERROR } from './types';
+import { FOLLOW_TOPIC, GET_TOPICS, TOPIC_ERROR, UNFOLLOW_TOPIC } from './types';
 
 export const getTopics = () => async dispatch => {
     try {
@@ -14,6 +14,38 @@ export const getTopics = () => async dispatch => {
         dispatch({
             type: TOPIC_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
-          });
+        });
+    }
+}
+
+export const followTopic = (id) => async dispatch => {
+    try {
+        const res = await api.put(`/posts/topics/follow/${id}`);
+        dispatch({
+            type: FOLLOW_TOPIC,
+            payload: {followers: res.data, id: id}
+        });
+
+    } catch (err) {
+        dispatch({
+            type: TOPIC_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
+    }
+}
+
+export const unfollowTopic = (id) => async dispatch => {
+    try {
+        const res = await api.put(`/posts/topics/unfollow/${id}`);
+        dispatch({
+            type: UNFOLLOW_TOPIC,
+            payload: {followers: res.data, id: id}
+        });
+
+    } catch (err) {
+        dispatch({
+            type: TOPIC_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status }
+        });
     }
 }

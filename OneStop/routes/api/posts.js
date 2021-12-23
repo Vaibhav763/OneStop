@@ -12,6 +12,7 @@ const Post = require('../../models/Post');
 const User = require('../../models/User');
 // Load Topic Model
 const Topic = require('../../models/Topic');
+const Profile = require('../../models/Profile');
 
 // @route    POST api/posts
 // @desc     Create a post
@@ -171,6 +172,103 @@ router.put(
       res.status(500).send('Server Error');
     }
 });
+
+
+/**
+ * @route   PUT api/topics/follow/:id
+ * @desc    follow a topic
+ * @access  private
+ */
+ router.put(
+  '/topics/follow/:id', 
+  auth, 
+  checkObjectId('id'), 
+  async (req, res) => {
+    try {
+      const topic = await Topic.findById(req.params.id);
+      const profile = await Profile.findOne({user: req.user.id});
+      // Check if the topic has already been followed
+      // some is the array method in JS
+      if(!topic || !profile){
+        return res.status(400).json({ msg: 'topic or profile not found' });
+      }
+      // console.log(topic.followers);
+      if(!profile.followed_topics){
+        profile.followed_topics = [];
+      }
+      // console.log(profile.followed_topics);
+      const inTopic = topic.followers.some((follower) => follower.user.toString() === req.user.id);
+      const inProfile = profile.followed_topics.some((followed) => followed.topic.toString() === req.params.id);
+      // console.log(inProfile);
+      if (inTopic && inProfile) {
+        return res.status(400).json({ msg: 'topic already followed' });
+      }
+      else if(inTopic || inProfile){
+        topic.followers = topic.followers.filter(
+          ({ user }) => user.toString() !== req.user.id
+        );
+        profile.followed_topics = profile.followed_topics.filter((followed_topic) => followed_topic.topic.toString() !== req.params.id);
+        // return res.status(400).json({ msg: 'continuity error' });
+      }
+
+      topic.followers.unshift({ user: req.user.id });
+      profile.followed_topics.unshift({topic: topic._id});
+      await topic.save();
+      await profile.save();
+
+      return res.json(topic.followers);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+});
+
+/**
+ * @route   PUT api/topics/unfollow/:id
+ * @desc    create topics
+ * @access  private
+ */
+ router.put(
+  '/topics/unfollow/:id',
+   auth, 
+   checkObjectId('id'), 
+   async (req, res) => {
+    try {
+      const topic = await Topic.findById(req.params.id);
+      const profile = await Profile.findOne({user: req.user.id});
+      // Check if the topic has already been followed
+      // some is the array method in JS
+      if(!topic || !profile){
+        return res.status(400).json({ msg: 'topic or profile not found' });
+      }
+      if(!profile.followed_topics){
+        profile.followed_topics = [];
+      }
+      const inTopic = topic.followers.some((follower) => follower.user.toString() === req.user.id);
+      const inProfile = profile.followed_topics.some((followed) => followed.topic.toString() === req.params.id);
+      // Check if the topic has not yet been followed
+      if (!inTopic && !inProfile) {
+        return res.status(400).json({ msg: 'topic has not yet been followed' });
+      }
+   
+      topic.followers = topic.followers.filter(
+        ({ user }) => user.toString() !== req.user.id
+      );
+      // console.log(profile.followed_topics);
+      profile.followed_topics = profile.followed_topics.filter((followed_topic) => followed_topic.topic.toString() !== req.params.id);
+
+
+      await topic.save();
+      await profile.save();
+
+      return res.json(topic.followers);
+    } 
+    catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+});
+
 
 
 // @route    POST api/posts/comment/:id

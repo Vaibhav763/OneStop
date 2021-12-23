@@ -92,6 +92,45 @@ const ProfileSchema = new Schema({
       }
     }
   ],
+  followers: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        unique: true
+      },
+      date: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
+  followed: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        unique: true
+      },
+      date: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
+  followed_topics: [
+    {
+      topic: {
+        type: Schema.Types.ObjectId,
+        required: true,
+        unique: true
+      },
+      date: {
+        type: Date,
+        default: Date.now()
+      }
+    }
+  ],
   social: {
     youtube: {
       type: String

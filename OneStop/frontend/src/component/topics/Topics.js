@@ -22,7 +22,7 @@ const Topics = ({getTopics, topic, post: {posts} }) => {
                     <div className="container mt-5">
                         <div className="row">
                             {topic.topics.map((tpic) => (
-                                <div className="col-12 col-md-6 col-lg-4">
+                                <div key={tpic._id} className="col-12 col-md-6 col-lg-4">
                                     <TopicItem topic={tpic} />
                                 </div>
                             ))}

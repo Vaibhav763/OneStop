@@ -1,4 +1,4 @@
-import { GET_TOPICS, TOPIC_ERROR } from "../actions/types";
+import { FOLLOW_TOPIC, GET_TOPICS, TOPIC_ERROR, UNFOLLOW_TOPIC } from "../actions/types";
 
 const initialState = {
     topics: [],
@@ -20,6 +20,13 @@ export default function(state=initialState, action){
             return {
                 ...state,
                 error: payload,
+                loading: false
+            }
+        case FOLLOW_TOPIC:
+        case UNFOLLOW_TOPIC:
+            return {
+                ...state,
+                topics: state.topics.map((topic) => topic._id === payload.id ? {...topic, followers: payload.followers} : topic ), 
                 loading: false
             }
         default:

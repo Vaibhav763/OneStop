@@ -25,3 +25,5 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const REMOVE_COMMENT = 'REMOVE_COMMENT';
 export const GET_TOPICS = 'GET_TOPICS';
 export const TOPIC_ERROR = 'TOPIC_ERROR';
+export const FOLLOW_TOPIC = 'FOLLOW_TOPIC';
+export const UNFOLLOW_TOPIC = 'UNFOLLOW_TOPIC';
