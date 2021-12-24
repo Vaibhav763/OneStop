@@ -350,3 +350,104 @@ router.get("/github/:username", (req, res) => {
   }
 })
 
+/**
+ * @route   PUT api/profile/follow/:id
+ * @desc    follow a person
+ * @access  private
+ */
+ router.put(
+  '/follow/:id', 
+  auth, 
+  checkObjectId('id'), 
+  async (req, res) => {
+    try {
+      const toFollow = await Profile.findById(req.params.id);
+      const follower = await Profile.findOne({user: req.user.id});
+      // Check if the topic has already been followed
+      // some is the array method in JS
+      if(!toFollow || !follower){
+        return res.status(400).json({ msg: 'profile not found' });
+      }
+      // console.log(topic.followers);
+      if(!toFollow.followers){
+        toFollow.followers = [];
+      }
+      if(!follower.followed){
+        follower.followed = [];
+      }
+      // console.log(profile.followed_topics);
+      const inFollowers = toFollow.followers.some((follower) => follower.user.toString() === req.user.id);
+      const inFollowed = follower.followed.some((followed) => followed.user.toString() === req.params.id);
+      // console.log(inProfile);
+      if (inFollowers && inFollowed) {
+        return res.status(400).json({ msg: 'already followed' });
+      }
+      else if(inFollowers || inFollowed){
+        toFollow.followers = toFollow.followers.filter(
+          ({ user }) => user.toString() !== req.user.id
+        );
+        follower.followed = follower.followed.filter((followed) => followed.user.toString() !== req.params.id);
+        // return res.status(400).json({ msg: 'continuity error' });
+      }
+
+      toFollow.followers.unshift({ user: req.user.id });
+      follower.followed.unshift({user: req.params.id});
+      await toFollow.save();
+      await follower.save();
+
+      return res.json({ followers: toFollow.followers, followed: follower.followed });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+});
+
+/**
+ * @route   PUT api/posts/topics/unfollow/:id
+ * @desc    unfollow topic
+ * @access  private
+ */
+ router.put(
+  '/topics/unfollow/:id',
+   auth, 
+   checkObjectId('id'), 
+   async (req, res) => {
+    try {
+      const toFollow = await Profile.findById(req.params.id);
+      const follower = await Profile.findOne({user: req.user.id});
+      // Check if the topic has already been followed
+      // some is the array method in JS
+      if(!toFollow || !follower){
+        return res.status(400).json({ msg: 'profile not found' });
+      }
+      // console.log(topic.followers);
+      if(!toFollow.followers){
+        toFollow.followers = [];
+      }
+      if(!follower.followed){
+        follower.followed = [];
+      }
+      // console.log(profile.followed_topics);
+      const inFollowers = toFollow.followers.some((follower) => follower.user.toString() === req.user.id);
+      const inFollowed = follower.followed.some((followed) => followed.user.toString() === req.params.id);
+      // Check if the topic has not yet been followed
+      if (!inFollowers && !inFollowed) {
+        return res.status(400).json({ msg: 'topic has not yet been followed' });
+      }
+   
+      toFollow.followers = toFollow.followers.filter(
+        ({ user }) => user.toString() !== req.user.id
+      );
+      follower.followed = follower.followed.filter((followed) => followed.user.toString() !== req.params.id);
+
+
+      await toFollow.save();
+      await follower.save();
+
+      return res.json({ followers: toFollow.followers, followed: follower.followed });
+    } 
+    catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+});

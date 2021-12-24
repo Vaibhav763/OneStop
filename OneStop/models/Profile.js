@@ -97,7 +97,8 @@ const ProfileSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         required: true,
-        unique: true
+        unique: true,
+        ref: 'user'
       },
       date: {
         type: Date,
@@ -110,7 +111,8 @@ const ProfileSchema = new Schema({
       user: {
         type: Schema.Types.ObjectId,
         required: true,
-        unique: true
+        unique: true,
+        ref='user'
       },
       date: {
         type: Date,
@@ -123,7 +125,8 @@ const ProfileSchema = new Schema({
       topic: {
         type: Schema.Types.ObjectId,
         required: true,
-        unique: true
+        unique: true,
+        ref: 'topic'
       },
       date: {
         type: Date,

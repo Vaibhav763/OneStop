@@ -175,7 +175,7 @@ router.put(
 
 
 /**
- * @route   PUT api/topics/follow/:id
+ * @route   PUT api/posts/topics/follow/:id
  * @desc    follow a topic
  * @access  private
  */
@@ -224,8 +224,8 @@ router.put(
 });
 
 /**
- * @route   PUT api/topics/unfollow/:id
- * @desc    create topics
+ * @route   PUT api/posts/topics/unfollow/:id
+ * @desc    unfollow topic
  * @access  private
  */
  router.put(
