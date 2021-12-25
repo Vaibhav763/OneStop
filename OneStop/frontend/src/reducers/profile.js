@@ -4,7 +4,9 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
+  FOLLOW_USER,
+  UNFOLLOW_USER
   // GET_REPOS,
   // NO_REPOS
 } from '../actions/types';
@@ -56,6 +58,14 @@ function profileReducer(state = initialState, action) {
         repos: [],
         loading: false
       };
+      case FOLLOW_USER:
+      case UNFOLLOW_USER:
+        return {
+          ...state,
+          profiles: state.profiles.map((profile) => profile.user.toString() === payload.id ? {...profile, followers: payload.data.followers} : profile ),
+          profile: (state.profile && state.profile.user.toString() === payload.id) ? {...state.profile, followers: payload.data.followers} : state.profile,
+          loading: false
+        }
     default:
       return state;
   }

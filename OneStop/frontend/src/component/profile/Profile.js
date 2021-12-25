@@ -35,7 +35,7 @@ const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
               </Link>
             )}
           <div className="profile-grid my-1">
-            <ProfileTop profile={profile} />
+            <ProfileTop />
             <ProfileAbout profile={profile} />
             <div className="profile-exp bg-white p-2">
               <h2 className="text-primary">Experience</h2>

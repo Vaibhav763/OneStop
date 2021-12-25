@@ -39,7 +39,7 @@ const TopicItem = ({topic, auth: {user}, followTopic, unfollowTopic}) => {
                 <div className="card-body">
                     <h5 className="card-title">{topic.title}</h5>
                     <p className="card-text">Followers: {topic.followers.length}</p>
-                    <Button onClick={onClick} className="btn btn-primary">{topic.followers.some((follower) => follower.id === user.id) ? "Unfollow" : "Follow"}</Button>
+                    <Button onClick={onClick} className="btn btn-primary">{topic.followers.some((follower) => follower.user.toString() === user._id.toString()) ? "Unfollow" : "Follow"}</Button>
                     <Link to={`/posts/explore/${topic.title}`} className="btn btn-secondary ml-3">Explore</Link>
                 </div>
             </div>

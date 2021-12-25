@@ -9,7 +9,9 @@ import {
   CLEAR_PROFILE,
   ACCOUNT_DELETED,
   GET_PROFILES,
-  GET_REPOS
+  GET_REPOS,
+  FOLLOW_USER,
+  UNFOLLOW_USER
   // NO_REPOS
 } from './types';
 
@@ -219,6 +221,39 @@ export const getGithubRepos = (username) => async dispatch => {
           type: GET_REPOS,
           payload: res.data
       })
+
+  } catch (err) {
+      dispatch({
+          type: PROFILE_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+      });
+  }
+}
+
+
+export const followProfile = (id) => async dispatch => {
+  try {
+      const res = await api.put(`/profile/follow/${id}`);
+      dispatch({
+          type: FOLLOW_USER,
+          payload: {data: res.data, id: id}
+      });
+
+  } catch (err) {
+      dispatch({
+          type: PROFILE_ERROR,
+          payload: { msg: err.response.statusText, status: err.response.status }
+      });
+  }
+}
+
+export const unfollowProfile = (id) => async dispatch => {
+  try {
+      const res = await api.put(`/profile/unfollow/${id}`);
+      dispatch({
+          type: UNFOLLOW_USER,
+          payload: {data: res.data, id: id}
+      });
 
   } catch (err) {
       dispatch({

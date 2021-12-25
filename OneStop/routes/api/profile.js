@@ -401,14 +401,16 @@ router.get("/github/:username", (req, res) => {
       res.status(500).send('Server Error');
     }
 });
+/**@Note profile id is stored in the user of the followed array */
+
 
 /**
- * @route   PUT api/posts/topics/unfollow/:id
+ * @route   PUT api/profile/unfollow/:id
  * @desc    unfollow topic
  * @access  private
  */
  router.put(
-  '/topics/unfollow/:id',
+  '/unfollow/:id',
    auth, 
    checkObjectId('id'), 
    async (req, res) => {

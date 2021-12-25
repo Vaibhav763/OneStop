@@ -25,6 +25,8 @@ import './App.css';
 import Topics from './component/topics/Topics';
 import Questions from './component/questions/Questions';
 import TopicPosts from './component/questions/TopicPosts';
+import ProfileFollowers from './component/profile/ProfileFollowers';
+import ProfileFollowed from './component/profile/ProfileFollowed';
 
 const App = () => {
   useEffect(() => {
@@ -56,6 +58,8 @@ const App = () => {
         <PrivateRoute exact path='/add_education' component={AddEducation}></PrivateRoute>
         <PrivateRoute exact path='/profiles' component={Profiles}></PrivateRoute>
         <PrivateRoute exact path='/profile/:id' component={Profile}></PrivateRoute>
+        <PrivateRoute exact path='/profile/:id/followers' component={ProfileFollowers}></PrivateRoute>
+        <PrivateRoute exact path='/profile/:id/following' component={ProfileFollowed}></PrivateRoute>
         <PrivateRoute exact path="/me/posts" component={Posts} />
         <PrivateRoute exact path="/posts" component={Questions} />
         <PrivateRoute exact path="/posts/:id" component={Post} />

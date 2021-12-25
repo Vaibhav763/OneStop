@@ -1,20 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { followProfile, unfollowProfile } from '../../actions/profile';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const ProfileTop = ({
-  profile: {
+  auth,
+  profile: {profile: {
+    _id,
     status,
     company,
     location,
     website,
     social,
-    user: { name, avatar }
-  }
+    followers,
+    followed,
+    followed_topics,
+    user
+  }},
+  followProfile,
+  unfollowProfile
 }) => {
+
+  const onClick = (e) => {
+    e.preventDefault();
+    // // console.log(e.target.innerHTML);
+    // console.log(topic._id);
+    if(e.target.innerHTML === "Follow"){
+        followProfile(_id);
+    }
+    else if(e.target.innerHTML === "Unfollow"){
+        unfollowProfile(_id);
+    }
+    window.location.reload();
+}
+
   return (
     <div className="profile-top bg-primary p-2">
-      <img className="round-img my-1" src={avatar} alt="" />
-      <h1 className="large">{name}</h1>
+      <img className="round-img my-1" src={user.avatar} alt="" />
+      <h1 className="large">{user.name}</h1>
       <p className="lead">
         {status} {company ? <span> at {company}</span> : null}
       </p>
@@ -40,12 +64,35 @@ const ProfileTop = ({
               ))
           : null}
       </div>
+      <div className="container m-0 bg-primary p-3 profile-top">
+        <div className="row align-items-center">
+          <div className="col-6">
+            { !(auth.user._id.toString() === user._id.toString()) && <button onClick={onClick} className="btn btn-primary">{followers.some((follower) => follower.user.toString() === auth.user._id.toString()) ? "Unfollow" : "Follow"}</button>}
+          </div>
+          {/* <div className="col-6">
+            <button className="btn btn-primary">Message</button>
+          </div> */}
+        </div>
+        <div className="row align-items-center mt-2">
+          <div className="col-4"> <Link to={`/profile/${user._id}/followers`} className="btn btn-secondary"> Followers: {followers ? followers.length : 0} </Link> </div>
+          <div className="col-4 "> <Link to={`/profile/${user._id}/following`} className="btn btn-secondary"> Following: {followed ? followed.length : 0} </Link></div>
+          <div className="col-4 "> <Link to={"#!"} className="btn btn-secondary"> Topics: {followed_topics ? followed_topics.length : 0} </Link></div>
+        </div>
+      </div>
     </div>
   );
 };
 
 ProfileTop.propTypes = {
-  profile: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  profile: PropTypes.object.isRequired,
+  followProfile: PropTypes.func.isRequired,
+  unfollowProfile: PropTypes.func.isRequired
 };
 
-export default ProfileTop;
+const mapStateToProps = state => ({
+  profile: state.profile,
+  auth: state.auth
+})
+
+export default connect(mapStateToProps, {followProfile, unfollowProfile})(ProfileTop);
