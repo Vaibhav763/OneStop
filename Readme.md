@@ -5,8 +5,7 @@
 > [Introduction](#introduction)  
 > [Problem Statement](#problem-statement)  
 > [Features](#features)   
-> [Tech Stack](#tech-stack)  
-> [Database Structure](#database-structure)  
+> [Tech Stack](#tech-stack)   
 > [Contributors](#contributors)  
 > [Suggest](#suggestions) 
 
@@ -18,7 +17,9 @@ The base problem for this project was the unavailability of a good platform to i
 
 
 ## `Features`
-- **Current Key Features:**
+
+### `Current Key Features:`
+
 - Authentication of users using email, username, and social links.
 - Users will be able to create and update their profiles (education, experience, social links, and upload resume).
 - Users can search for other user’s profiles.
@@ -33,7 +34,8 @@ The base problem for this project was the unavailability of a good platform to i
 - Change profile picture of the user.
 
 
- - **Future Scope:**
+### `Future Scope:`
+
  - Deploy the website for real life implementations.
  - Launching the website across different institutions.
  - Peer-to-peer chat and video call feature for mock interviews.
@@ -41,15 +43,15 @@ The base problem for this project was the unavailability of a good platform to i
 
 
 ## `Tech-Stack`
--Redux
--Node JS
--React JS
--Express JS
--MongoDB
--GitHub API
--Lottie-Animations
--NPM
--React-Bootstrap
+- Redux
+- Node JS
+- React JS
+- Express JS
+- MongoDB
+- GitHub API
+- Lottie-Animations
+- NPM
+- React-Bootstrap
 
 
 
