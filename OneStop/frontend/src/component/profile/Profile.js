@@ -30,9 +30,14 @@ const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
           {auth.isAuthenticated &&
             auth.loading === false &&
             auth.user._id === profile.user._id && (
-              <Link to="/create_profile" className="btn btn-dark">
-                Edit Profile
-              </Link>
+              <Fragment>
+                <Link to="/create_profile" className="btn btn-dark">
+                  Edit Profile
+                </Link>
+                <Link to="/reset_password" className="btn btn-dark">
+                  Reset Password
+                </Link>
+            </Fragment>
             )}
           <div className="profile-grid my-1">
             <ProfileTop />

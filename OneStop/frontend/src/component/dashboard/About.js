@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 // basicallly we have destructured our prop(profile here)
 const About= ({
   profile: {
-    user: { _id, name, avatar },
+    user: { _id, name, avatar, email },
     website,
     bio,
     company,
@@ -13,6 +14,12 @@ const About= ({
     skills
   }
 }) => {
+
+  const changePassword = async () => {
+    const data = {_id, name, email};
+    axios.post("/user/reset_password", data);
+  }
+
   return (
     <div className='profile bg-light'>
       <img src={avatar} alt='' className='round-img' />
@@ -24,7 +31,9 @@ const About= ({
         <Link to='/create_profile' className='btn btn-primary'>
             <i className='fas fa-user-circle text-primary className=my-1' /> Edit Profile
         </Link>
-
+        <button onClick={() => changePassword()} className='btn btn-primary' >
+          Reset Password
+        </button>
       </div>
       <ul>
         {skills.slice(0, 4).map((skill, index) => (

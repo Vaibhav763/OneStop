@@ -7,7 +7,7 @@
     "start": "node server",
     "server": "nodemon server",
     "frontend": "npm start --prefix frontend",
-    "dev":"concurrently \"npm run server\" \"npm run frontend\""
+    "dev": "concurrently \"npm run server\" \"npm run frontend\""
   },
   "author": "Vaibhav",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
+    "nodemailer": "^6.7.4",
     "request": "^2.88.2"
   },
   "devDependencies": {

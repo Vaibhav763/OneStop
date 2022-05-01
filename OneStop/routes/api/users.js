@@ -4,10 +4,14 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator');
+const { check, validationResult, Result } = require('express-validator');
 const normalize = require('normalize-url');
-
+// import { v4 as uuidv4 } from 'uuid';
+const {uuidv4: v4} = require("uuid");
+const Token = require("../../models/Token");
 const User = require('../../models/User');   // fetched User model from our model folder
+const nodemailer = require("nodemailer");
+
 
 // @route    POST api/users
 // @desc     Register user
@@ -95,6 +99,80 @@ router.post(
     }
   }
 );
+
+router.post("/reset_password", check("_id").not().isEmpty(), async (req, res) => {
+  const ress = validationResult(req);
+  if(!Result.isEmpty()){
+    return ress.statusCode(400).json({errors: ress.array()});
+  }
+  try {
+    const _id = req.body._id;
+    const user = await User.findOne({_id: req.body._id});
+
+    let token = await Token.findOne({user_id: user._id});
+
+    if(token == null){
+      const newToken = {
+        user_id: user._id,
+        token: uuidv4()
+      };
+  
+      token = new Token(newToken);
+      await token.save();
+    }
+    else{
+      token.token = uuidv4();
+      await token.save();
+    }
+    
+    const testAccount = nodemailer.createTestAccount();
+
+    const transports = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: testAccount.user, // generated ethereal user
+        pass: testAccount.pass, // generated ethereal password
+      },
+    });
+
+    let info = await transports.sendMail({
+      from: testAccount.user,
+      to: user.email,
+      subject: "Change your Password",
+      html: `To reset your password click <a href="https://localhost:3000/reset_password/${token.token}">here</a>`
+    });
+
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).send("Server Error");
+  }
+});
+
+router.post("/reset_password/final", check("password").not().isEmpty(), check("token").not().isEmpty(), async (req, res) => {
+  const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()});
+    }
+    try {
+     
+      const token = await Token.findOne({token: req.body.token});
+      const user = await User.findOne({_id: token.user_id});
+      if(user != null){
+        // encrypting the password using bcryptjs 
+        const salt = await bcrypt.genSalt(10);
+
+        user.password = await bcrypt.hash(req.body.password, salt);
+
+        await user.save();
+      }
+
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send("Server Error");
+    }
+})
 
 module.exports = router;
 
