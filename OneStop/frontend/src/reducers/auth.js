@@ -6,7 +6,8 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-  ACCOUNT_DELETED
+  ACCOUNT_DELETED,
+  // RESET_PASSWORD
 } from '../actions/types';
 
 // token is stored in local storage using Javascript  
@@ -53,6 +54,7 @@ function authReducer(state = initialState, action) {
         loading: false,
         user: null
       };
+    
     default:
       return state;
   }

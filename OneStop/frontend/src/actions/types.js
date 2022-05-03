@@ -29,3 +29,4 @@ export const FOLLOW_TOPIC = 'FOLLOW_TOPIC';
 export const UNFOLLOW_TOPIC = 'UNFOLLOW_TOPIC';
 export const FOLLOW_USER = 'FOLLOW_USER';
 export const UNFOLLOW_USER = 'UNFOLLOW_USER';
+export const RESET_PASSWORD = 'RESET_PASSWORD';

@@ -4,10 +4,14 @@ const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
-const { check, validationResult } = require('express-validator');
+const { check, validationResult, Result } = require('express-validator');
 const normalize = require('normalize-url');
-
+// import { v4 as uuidv4 } from 'uuid';
+const {v4: uuidv4} = require("uuid");
+const Token = require("../../models/Token");
 const User = require('../../models/User');   // fetched User model from our model folder
+const nodemailer = require("nodemailer");
+
 
 // @route    POST api/users
 // @desc     Register user
@@ -95,6 +99,102 @@ router.post(
     }
   }
 );
+
+/**
+ * @route POST /api/users/reset_password
+ * @description reset password initialization
+ * @access public
+ */
+
+router.post("/reset_password", check("email").not().isEmpty(), async (req, res) => {
+  const ress = validationResult(req);
+  if(!ress.isEmpty()){
+    return res.status(400).json({errors: ress.array()});
+  }
+  try {
+    // const _id = req.body._id;
+    const user = await User.findOne({email: req.body.email});
+
+    let token = await Token.findOne({user_id: user._id});
+
+    if(token == null){
+      const newToken = {
+        user_id: user._id,
+        token: uuidv4()
+      };
+  
+      token = new Token(newToken);
+      await token.save();
+    }
+    else{
+      token.token = uuidv4();
+      await token.save();
+    }
+    
+    const testAccount = await nodemailer.createTestAccount();
+
+    const transports = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: testAccount.user, // generated ethereal user
+        pass: testAccount.pass, // generated ethereal password
+      },
+    });
+
+    let info = await transports.sendMail({
+      from: testAccount.user,
+      to: user.email,
+      subject: "Change your Password",
+      text: "",
+      html: `To reset your password click <a href="http://localhost:3000/reset_password/${token.token}">here</a>`
+    });
+
+    console.log(nodemailer.getTestMessageUrl(info));
+    return res.json({msg: "Email sent successfully"})
+  } catch (err) {
+    console.log(err.message);
+    return res.status(500).send("Server Error");
+  }
+});
+
+/**
+ * @route POST /api/users/reset_password/final
+ * @description reset password finalization
+ * @access public
+ */
+router.post("/reset_password/final/", check("password").not().isEmpty(), check("token").not().isEmpty(), async (req, res) => {
+  const errors = validationResult(req);
+    if(!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()});
+    }
+    try {
+     
+      let token = await Token.findOne({token: req.body.token});
+      const user = await User.findOne({_id: token.user_id});
+      if(token == null){
+        return res.status(401).json({msg: "token expired"});
+      }
+      if(user != null){
+        // encrypting the password using bcryptjs 
+        const salt = await bcrypt.genSalt(10);
+
+        user.password = await bcrypt.hash(req.body.password, salt);
+
+        await user.save();
+        token = await Token.findByIdAndDelete(token._id);
+
+        return res.json({msg: "success"});
+      }
+      else{
+        return res.status(401).json({errors: {msg: "User does not exist"}});
+      }
+    } catch (err) {
+      console.error(err.message);
+      return res.status(500).send("Server Error");
+    }
+})
 
 module.exports = router;
 

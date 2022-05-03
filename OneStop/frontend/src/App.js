@@ -27,6 +27,7 @@ import Questions from './component/questions/Questions';
 import TopicPosts from './component/questions/TopicPosts';
 import ProfileFollowers from './component/profile/ProfileFollowers';
 import ProfileFollowed from './component/profile/ProfileFollowed';
+import ChangePassword from './component/profile_forms/ChangePassword';
 
 const App = () => {
   useEffect(() => {
@@ -65,6 +66,7 @@ const App = () => {
         <PrivateRoute exact path="/posts/:id" component={Post} />
         <PrivateRoute exact path="/topics" component={Topics} />
         <PrivateRoute exact path="/posts/explore/:topic" component={TopicPosts} />
+        <Route exact path="/reset_password/:token" component={ChangePassword} />
         <Route component={NotFound}></Route>
       </Switch>
     </div>

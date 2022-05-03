@@ -86,6 +86,10 @@ dispatch ({ type: LOGOUT });
 dispatch ({type:CLEAR_PROFILE});
 }
 
+// export const changePassword = () => async dispatch => {
+
+// }
+
 /** action file basically help us to get/post data from/to our database 
   (similar to POSTMAN ) and the response get stored to payload ,
   which is then passed to reducer to change the state of our component */
