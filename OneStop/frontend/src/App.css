@@ -147,6 +147,21 @@ img {
   margin: 3rem 0;
 }
 
+.datespace {
+  margin-top:0.8rem;
+}
+
+
+element.style {
+  height: 60px;
+}
+.card-header:first-child {
+  border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+}
+.card-header {
+  padding:0 0 3px 0;
+}
+
 .btn {
   display: inline-block;
   background: var(--light-color);
@@ -515,6 +530,19 @@ button {
   font-size: 20px;
   padding: 10px;
 }
+
+.postdate {
+  font-family: cursive;
+  font-size: 15px;
+  padding:5px;
+}
+
+
+.postauthor {
+  font-family: cursive;
+  font-size: 15px;
+  padding:0px 8px;
+}
 .post .comment-count {
   background: whitesmoke;
   color: var(--primary-color);
@@ -523,17 +551,13 @@ button {
   font-size: 0.8rem;
 }
 
-.post .post-date {
+.post .post-date{
   color: rgb(26, 26, 26);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
   padding: 5px;
 }
 
-.postauthor {
-  font-family: cursive;
-  padding:8px;
-}
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {

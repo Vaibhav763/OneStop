@@ -8,7 +8,7 @@ const CommentForm = ({ postId, addComment }) => {
   const str = `Type your answer here`;
   const [text, setText] = useState(str);
 
-  // const onChange = (e) => setText(e.target.value)
+  const onChange = (e) => setText(e.target.value)
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -18,11 +18,11 @@ const CommentForm = ({ postId, addComment }) => {
   };
   return (
     <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Write your Answer</h3>
+      <div className='large basictext p'>
+        <h3>Write your Comment</h3>
       </div>
       <form className='form my-1' onSubmit={onSubmit} >
-        {/* <textarea
+         <textarea
           name='text'
           cols='30'
           rows='5'
@@ -30,9 +30,9 @@ const CommentForm = ({ postId, addComment }) => {
           value={text}
           onChange={onChange}
           required
-        /> */}
-        <MDEditor value={text} onChange={setText} />
-
+        /> 
+       {/* <MDEditor value={text} onChange={setText} /> */}
+        <div className='space'></div>
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
       </form>
     </div>

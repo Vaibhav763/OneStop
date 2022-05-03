@@ -19,6 +19,7 @@ const AnswerItem = ({
     deleteComment
   }) => {
     return (
+        <div className='my-3'>
         <Fragment>
             <Card>
                 <Card.Header style={{height: '60px'}}>
@@ -26,15 +27,19 @@ const AnswerItem = ({
                     <Container style={{padding: 0, margin:0}}>
                         <Row>
                             <Col sm={6} md={6} >
+                                <div className='lead'>
                             <Link to={`/profile/${user}`}>
                                 <Image  src={avatar} roundedCircle style={{height: '40px', width: '40px', display:'inline'}} /> {`    `}
-                                <h4 style={{display: 'inline', marginTop: '30px'}} >{name}</h4>
+                                <h4 style={{display: 'inline', marginTop: '10px'}} >{name}</h4>
                             </Link>
+                            </div>
                             </Col>
                             <Col sm={{ span: 3, offset: 2 }} md={{span: 3, offset: 3}}>
-                                <span className='text-secondary'>
+                               <div className="datespace">
+                                <span>
                                     Posted on {formatDate(date)} {"   "}
                                 </span>
+                              
                             {!auth.loading && user === auth.user._id && (
                                 <button
                                 onClick={() => deleteComment(postId, _id)}
@@ -44,6 +49,7 @@ const AnswerItem = ({
                                 <i className="fas fa-times" />
                                 </button>
                             )}
+                              </div>
                             </Col>
                             
                         </Row>
@@ -55,9 +61,6 @@ const AnswerItem = ({
                             <MDEditor.Markdown
                                 source={text}
                                 linkTarget="_blank"
-                                // previewOptions={{
-                                //   linkTarget: "_blank"
-                                // }}
                             />
                         </Container>
                     </Card.Text>
@@ -66,6 +69,7 @@ const AnswerItem = ({
                 </Card.Body>
             </Card>
         </Fragment>
+        </div>
     )
 }
 
