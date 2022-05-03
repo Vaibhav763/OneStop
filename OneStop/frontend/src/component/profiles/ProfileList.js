@@ -38,7 +38,7 @@ const ProfileList = ({profiles,  title, loading}) => {
                 developers
               </p>
              
-              <div className="container mt-2 dashbox ">
+              <div className="container mt-2 dashbox bordrr">
                 <form onSubmit={onSubmit}>
                   <InputGroup className="mb-3">
                     <FormControl
@@ -55,7 +55,7 @@ const ProfileList = ({profiles,  title, loading}) => {
                 </form>
               </div>
               
-              <div className='profiles dashbox'>
+              <div className='profiles dashbox bordrr'>
                 {filteredProfiles.length > 0 ? (
                   filteredProfiles.map(profile => (
                     <ProfileItem key={profile._id} profile={profile} />

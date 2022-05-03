@@ -80,7 +80,7 @@ img {
 .text {
   font-size: 1.1rem;
   margin-bottom: 0.7rem;
-  font-family: "Cursive", sans-serif;
+  font-family: "cursive", sans-serif;
   color: #161717;
 }
 .text-center {
@@ -497,8 +497,8 @@ button {
 
 .post {
   display: grid;
-  grid-template-columns: 1fr 4fr;
-  grid-gap: 2rem;
+  grid-template-columns: 2.8fr 4fr;
+  grid-gap: 1rem;
   align-items: center;
 }
 
@@ -510,20 +510,30 @@ button {
   width: 100px;
 }
 
+.posttext {
+  font-family: cursive;
+  font-size: 20px;
+  padding: 10px;
+}
 .post .comment-count {
-  background: var(--light-color);
+  background: whitesmoke;
   color: var(--primary-color);
-  padding: 0.1rem 0.2rem;
-  border-radius: 5px;
+  padding: 0.1rem 0.3rem;
+  border-radius: 50%;
   font-size: 0.8rem;
 }
 
 .post .post-date {
-  color: #aaa;
+  color: rgb(26, 26, 26);
   font-size: 0.8rem;
   margin-bottom: 0.5rem;
+  padding: 5px;
 }
 
+.postauthor {
+  font-family: cursive;
+  padding:8px;
+}
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
@@ -666,10 +676,15 @@ button {
   font-family: cursive;
   padding: 0 0 0 5px;
 }
+
 .bordr {
  border-radius: 7px;
  padding:7px;
 }
+
+.bordrr {
+  border-radius: 12px;
+ }
 .bord {
   border: #163c5c solid 2.5px
 }

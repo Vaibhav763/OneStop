@@ -14,19 +14,19 @@ const PostItem = ({
   post: { _id, text, name, avatar, user, likes, comments, date, topic },
   showActions
 }) => (
-  <div className="post bg-white p-3 my-3">
+  <div className="post bg-white p-2 my-3 bordr">
     <div>
-      <Link to={`/profile/${user}`}>
-        <img className="round-img" src={avatar} alt="" />
-        <h4>{name}</h4>
-      </Link>
+      <h4 className="my-1 posttext"> {text}</h4>
     </div>
-    <div>
-      <p className="my-1">{text}</p>
-      {topic && <Button className='my-2' variant='secondary' disabled='true'>{topic.title}</Button>}
-      
-      <p className="post-date">Posted on {formatDate(date)}</p>
 
+    <div>
+
+      <Link to={`/profile/${user}`}>
+        <p className='postauthor'>By: {name}</p>
+      </Link>
+      
+       {topic && <Button className='my-2 bc'  disabled='true'>{topic.title}</Button>}
+  
       {showActions && (
         <Fragment>
           <button
@@ -45,7 +45,7 @@ const PostItem = ({
             <i className="fas fa-thumbs-down" />
           </button>
           <Link to={`/posts/${_id}`} className="btn btn-primary">
-            Discussion{' '}
+            Comments{' '}
             {comments.length > 0 && (
               <span className="comment-count">{comments.length}</span>
             )}
@@ -61,6 +61,9 @@ const PostItem = ({
           )}
         </Fragment>
       )}
+    </div>
+    <div>
+    <p className="post-date">Posted on {formatDate(date)}</p>
     </div>
   </div>
 );

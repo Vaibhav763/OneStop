@@ -53,13 +53,16 @@ const Questions = ({ getPosts, post: { posts, loading } }) => {
 
   return loading ? <Spinner/> : (
     <Fragment>
-      <section className="container">
-      <h1 className="large text-primary">Questions</h1>
+      <section className="container ">
+      <h1 className="large middle">Questions</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
       <div className="posts">
-        <div className="container mt-2">
+        <div className="container mt-2  dashbox bordrr">
+          <p className='text'>
+            Get your doubts answered -: 
+          </p>
             <form onSubmit={onSubmit}>
               <InputGroup className="mb-3">
                 <FormControl
@@ -75,9 +78,15 @@ const Questions = ({ getPosts, post: { posts, loading } }) => {
               </InputGroup>
             </form>
           </div>
+          
+          <div className='dashbox bordrr'>
+          <p className='text'>
+            Previously Asked Question-: 
+          </p>
         {filteredPosts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}
+        </div>
       </div>
       </section>
     </Fragment>
