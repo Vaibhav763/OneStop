@@ -16,21 +16,23 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
   return (
     <Fragment>
       <section className="container">
-        <h1 className="large text-primary">Dashboard</h1>
+        <h1 className="large middle">Dashboard</h1>
         <p className="lead">
           <i className="fas fa-user" /> Welcome {user && user.name}
         </p>
+        
         { profile !== null ? (
           <Fragment>
-
+            <div className='dashbox'>
             <About profile={profile} /> 
             <Experience experience={profile.experience} />
             <Education education={profile.education} />
-
+           
             <div className="my-3">
               <button className="btn btn-danger" onClick={() => deleteAccount()}>
                 <i className="fas fa-user-minus" /> Delete My Account
               </button>
+            </div>
             </div>
           </Fragment>
         ) : (
@@ -42,6 +44,7 @@ const Dashboard = ({getCurrentProfile, auth: {user}, profile: {profile} }) => {
             <Load/>
           </Fragment>
         )}
+       
       </section>
     </Fragment>
     

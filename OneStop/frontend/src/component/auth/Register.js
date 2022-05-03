@@ -41,7 +41,8 @@ const { name, email, password, password2 } = formData;
       <section className="container">
       <ParticlesBg num={3} type="fountain" bg={true} />
       <div className="box">
-      <h1 className="large text-primary">Sign Up</h1>
+      <h1 className="large middle">Sign Up</h1>
+      <div className="innerbox">
       <p className="lead">
         <i className="fas fa-user" /> Create Your Account
       </p>
@@ -92,9 +93,10 @@ const { name, email, password, password2 } = formData;
         </div>
         <input type="submit" className="btn btn-primary" value="Register" />
       </form>
-      <p className="my-1">
+      <p className="my-1 space">
         Already have an account? <Link to="/login">Sign In</Link>
       </p>
+      </div>
       </div>
       </section>
     </Fragment>

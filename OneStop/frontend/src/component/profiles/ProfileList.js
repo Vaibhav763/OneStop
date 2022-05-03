@@ -32,7 +32,7 @@ const ProfileList = ({profiles,  title, loading}) => {
           ) : (
             <Fragment>
               <section className="container">
-              <h1 className='large text-primary'>{title}</h1>
+              <h1 className='large middle'>{title}</h1>
               <p className='lead'>
                 <i className='fab fa-connectdevelop' /> Browse and connect with
                 developers

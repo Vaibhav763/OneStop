@@ -35,8 +35,9 @@ const AddEducation = ({ addEducation, history }) => {
 
   return (
     <Fragment>
-       <section className="container">
-      <h1 className="large text-primary">Add Your Education</h1>
+       <section className="container formbox">
+       <div className="innerbox">
+      <h1 className="large middle">Add Your Education</h1>
       <p className="lead">
         <i className="fas fa-code-branch" /> Add any school or bootcamp that you
         have attended
@@ -73,7 +74,7 @@ const AddEducation = ({ addEducation, history }) => {
           />
         </div>
         <div className="form-group">
-          <h4>From Date</h4>
+          <h4 className='lead'>From Date</h4>
           <input type="date" name="from" value={from} onChange={onChange} />
         </div>
         <div className="form-group">
@@ -89,7 +90,7 @@ const AddEducation = ({ addEducation, history }) => {
           </p>
         </div>
         <div className="form-group">
-          <h4>To Date</h4>
+          <h4 className='lead'> To Date</h4>
           <input
             type="date"
             name="to"
@@ -113,6 +114,7 @@ const AddEducation = ({ addEducation, history }) => {
           Go Back
         </Link>
       </form>
+      </div>
       </section>
     </Fragment>
   );

@@ -7,7 +7,8 @@
     "start": "node server",
     "server": "nodemon server",
     "frontend": "npm start --prefix frontend",
-    "dev":"concurrently \"npm run server\" \"npm run frontend\""
+    "video_chat": "npm start --prefix video_chat",
+    "dev": "concurrently \"npm run server\" \"npm run video_chat\"  \"npm run frontend\" "
   },
   "author": "Vaibhav",
   "license": "ISC",
@@ -19,7 +20,8 @@
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "concurrently": "^6.3.0",

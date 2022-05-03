@@ -30,10 +30,13 @@ const Login = ({ login, isAuthenticated }) => {
       <section className="container">
       <ParticlesBg num={3}  type="fountain" bg={true} />
       <div className="box">
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead">
-        <i className="fas fa-user" /> Sign Into Your Account
-      </p>
+
+      <h1 className="large middle">Sign In</h1>
+      <div className="innerbox">
+        <p className="lead">
+          <i className="fas fa-user" /> Sign Into Your Account
+        </p>
+     
       <form className="form" onSubmit={onSubmit}>
         <div className="form-group">
           <input
@@ -57,9 +60,11 @@ const Login = ({ login, isAuthenticated }) => {
         </div>
         <input type="submit" className="btn btn-primary" value="Login" />
       </form>
-      <p className="my-1">
+     
+      <p className="my-1 space">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
+      </div>
       </div>
       </section>
     </Fragment>

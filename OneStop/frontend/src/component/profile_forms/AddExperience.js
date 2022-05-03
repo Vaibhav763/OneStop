@@ -27,8 +27,9 @@ const AddExperience = ({ addExperience, history }) => {
 
   return (
     <Fragment>
-      <section className="container">
-      <h1 className="large text-primary">Add An Experience</h1>
+      <section className="container formbox">
+      <div className="innerbox">
+      <h1 className="large middle">Add An Experience</h1>
       <p className="lead">
         <i className="fas fa-code-branch" /> Add any developer/programming
         positions that you have had in the past
@@ -65,7 +66,7 @@ const AddExperience = ({ addExperience, history }) => {
           />
         </div>
         <div className="form-group">
-          <h4>From Date</h4>
+          <h4 className='=lead'>From Date</h4>
           <input type="date" name="from" value={from} onChange={onChange} />
         </div>
         <div className="form-group">
@@ -83,7 +84,7 @@ const AddExperience = ({ addExperience, history }) => {
           </p>
         </div>
         <div className="form-group">
-          <h4>To Date</h4>
+          <h4 className='lead'>To Date</h4>
           <input
             type="date"
             name="to"
@@ -107,6 +108,7 @@ const AddExperience = ({ addExperience, history }) => {
           Go Back
         </Link>
       </form>
+      </div>
       </section>
     </Fragment>
   );
