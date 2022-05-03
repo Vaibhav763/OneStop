@@ -18,10 +18,12 @@ const PostForm = ({ addPost, topics }) => {
   };
 
   return (
-    <div className='post-form'>
-      <div className='bg-primary p'>
-        <h3>Ask a question...</h3>
-      </div>
+    
+    <div className='post-form dashbox bordrr'>
+
+      <p className="postext">
+        <i className="fas fa-user" /> Ask a Question
+      </p> 
       <form className='form my-1' onSubmit={onSubmit}>
         <textarea
           cols='30'
@@ -32,13 +34,15 @@ const PostForm = ({ addPost, topics }) => {
           onChange={onChange}
           required
         />
-        <label htmlFor="topics">Choose a Topic:</label>
+        <div className='space'></div>
+        <p className="postext "> Choose the related Topic:</p>
         <select className='dropdown' name="topics" id="topics" onChange={(e) => {console.log(e.target.value);setTopic(e.target.value);}}>
           <option className='dropdown-item'>Select</option>
           {topics.map( (topic) => (
             <option className='dropdown-item' key={topic._id} value={topic._id}>{topic.title}</option>
           ) )}
         </select>
+        <div className='space'></div>
         <input type='submit' className='btn btn-dark my-1' value='Submit' />
       </form>
     </div>

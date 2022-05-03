@@ -18,8 +18,10 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
     <Spinner />
   ) : (
     <Fragment>
+
       <section className="container">
-      <Link to="/posts" className="btn">
+      <div className='dashbox'>
+      <Link to="/posts" className="btn btn-primary">
         Back To Posts
       </Link>
       <PostItem post={post} showActions={false} />
@@ -32,6 +34,7 @@ const Post = ({ getPost, post: { post, loading }, match }) => {
           </Fragment>
         ))}
         
+      </div>
       </div>
       </section>
     </Fragment>

@@ -60,14 +60,16 @@ const Posts = ({ getPosts, getTopics, post: { posts, loading }, topic: {topics},
   return loading ? <Spinner/> : (
     <Fragment>
       <section className="container">
-      <h1 className="large text-primary">My Questions</h1>
-      {/* <p className="lead">
-        <i className="fas fa-user" /> Welcome to the community
-      </p> */}
+      <h1 className="large middle">Ask Question</h1>
+     
       <PostForm topics={topics} />
       <hr />
-      <div className="posts">
-        <div className="container mt-2">
+      <h1 className="large middle">My Questions</h1>
+      <div className="posts dashbox bordrr">
+      <div className="container mt-2">
+        <p className='text'>
+           Search the Questions-: 
+          </p>
             <form onSubmit={onSubmit}>
               <InputGroup className="mb-3">
                 <FormControl
@@ -82,10 +84,13 @@ const Posts = ({ getPosts, getTopics, post: { posts, loading }, topic: {topics},
                 </Button>
               </InputGroup>
             </form>
-          </div>
+            </div>
+         <div className='space'></div>
+
         {filteredPosts.map((post) => (
           <PostItem key={post._id} post={post} />
         ))}
+
       </div>
       </section>
     </Fragment>

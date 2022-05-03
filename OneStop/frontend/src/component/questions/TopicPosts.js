@@ -56,12 +56,15 @@ const TopicPosts = ({ getPosts, post: { posts, loading } }) => {
   return loading ? <Spinner/> : (
     <Fragment>
       <section className="container">
-      <h1 className="large text-primary">Questions related to {topic}</h1>
+      <h1 className="large middle py-3">Questions related to {topic}</h1>
       <p className="lead">
         <i className="fas fa-user" /> Welcome to the community
       </p>
-      <div className="posts">
+      <div className="posts  dashbox bordrr">
         <div className="container mt-2">
+        <p className='text'>
+           Search the Questions-: 
+          </p>
             <form onSubmit={onSubmit}>
               <InputGroup className="mb-3">
                 <FormControl
