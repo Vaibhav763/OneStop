@@ -17,9 +17,12 @@ const Topics = ({getTopics, topic, post: {posts} }) => {
     return (
         <Fragment>
             {topic.loading ? <Spinner/> : (
-                <div className="container">
-                    <h1 className="text-primary large">Topics</h1>
-                    <div className="container mt-5">
+                <div className="container ">
+                    <h1 className= "large middle">Topics</h1>
+                    <p className='lead'>
+                        <i className='fab fa-connectdevelop' /> Look for your favourite topic
+                    </p>
+                    <div className="container mt-5 dashbox bordrr">
                         <div className="row">
                             {topic.topics.map((tpic) => (
                                 <div key={tpic._id} className="col-12 col-md-6 col-lg-4">

@@ -66,8 +66,8 @@ const ProfileTop = ({
       </div>
       <div className="container m-0 bc p-3 profile-top">
         <div className="row align-items-center">
-          <div className="col-6">
-            { !(auth.user._id.toString() === user._id.toString()) && <button onClick={onClick} className="btn btn-primary">{followers.some((follower) => follower.user.toString() === auth.user._id.toString()) ? "Unfollow" : "Follow"}</button>}
+          <div className="col-6 ">
+            { !(auth.user._id.toString() === user._id.toString()) && <button onClick={onClick} className="btn btn-primary bordwhite">{followers.some((follower) => follower.user.toString() === auth.user._id.toString()) ? "Unfollow" : "Follow"}</button>}
           </div>
           {/* <div className="col-6">
             <button className="btn btn-primary">Message</button>

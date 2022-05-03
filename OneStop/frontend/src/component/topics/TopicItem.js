@@ -34,13 +34,13 @@ const TopicItem = ({topic, auth: {user}, followTopic, unfollowTopic}) => {
 
     return (
         <Fragment>
-            <div className="card" >
-                <img src={photos.length > 0 && photos[0].urls.thumb} className="card-img-top" alt={topic.title} />
+            <div className="card bord" >
+                <img src={photos.length > 0 && photos[0].urls.thumb} className="card-img-top topicimg" alt={topic.title} />
                 <div className="card-body">
-                    <h5 className="card-title">{topic.title}</h5>
-                    <p className="card-text">Followers: {topic.followers.length}</p>
+                    <h4 className="profileheadings">{topic.title}</h4>
+                    <p className="text">Followers: {topic.followers.length}</p>
                     <Button onClick={onClick} className="btn btn-primary">{topic.followers.some((follower) => follower.user.toString() === user._id.toString()) ? "Unfollow" : "Follow"}</Button>
-                    <Link to={`/posts/explore/${topic.title}`} className="btn btn-secondary ml-3">Explore</Link>
+                    <Link to={`/posts/explore/${topic.title}`} className="btn btn-secondary ml-3 bordless">Explore</Link>
                 </div>
             </div>
         </Fragment>
