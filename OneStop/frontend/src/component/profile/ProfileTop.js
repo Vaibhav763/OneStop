@@ -36,13 +36,13 @@ const ProfileTop = ({
 }
 
   return (
-    <div className="profile-top bg-primary p-2">
-      <img className="round-img my-1" src={user.avatar} alt="" />
-      <h1 className="large">{user.name}</h1>
+    <div className="profile-top p-2 bc">
+      <img className="round-img m-3" src={user.avatar} alt="" />
+      <h1 className="large basictext">{user.name}</h1>
       <p className="lead">
         {status} {company ? <span> at {company}</span> : null}
       </p>
-      <p>{location ? <span>{location}</span> : null}</p>
+      <p className="lead"> {location ? <span>{location}</span> : null}</p>
       <div className="icons my-1">
         {website ? (
           <a href={website} target="_blank" rel="noopener noreferrer">
@@ -64,7 +64,7 @@ const ProfileTop = ({
               ))
           : null}
       </div>
-      <div className="container m-0 bg-primary p-3 profile-top">
+      <div className="container m-0 bc p-3 profile-top">
         <div className="row align-items-center">
           <div className="col-6">
             { !(auth.user._id.toString() === user._id.toString()) && <button onClick={onClick} className="btn btn-primary">{followers.some((follower) => follower.user.toString() === auth.user._id.toString()) ? "Unfollow" : "Follow"}</button>}

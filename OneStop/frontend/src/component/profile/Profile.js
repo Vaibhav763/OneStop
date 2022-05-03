@@ -23,7 +23,7 @@ const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
       {profile === null ? (
         <Spinner />
       ) : (
-        <Fragment>
+        <Fragment className="my-3">
           <Link to="/profiles" className="btn btn-light">
             Back To Profiles
           </Link>
@@ -39,11 +39,13 @@ const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
                 </Link>
             </Fragment>
             )}
-          <div className="profile-grid my-1">
-            <ProfileTop />
+          <div className="profile-grid my-1 dashbox">
+            
+            <ProfileTop/>
             <ProfileAbout profile={profile} />
-            <div className="profile-exp bg-white p-2">
-              <h2 className="text-primary">Experience</h2>
+           
+            <div className="profile-exp bg-white p-2 bord">
+              <h2 className="text-primary profileheadings">Experience</h2>
               {profile.experience.length > 0 ? (
                 <Fragment>
                   {profile.experience.map((experience) => (
@@ -58,8 +60,8 @@ const Profile = ({ getProfileById,profile: { profile }, auth, match}) => {
               )}
             </div>
 
-            <div className="profile-edu bg-white p-2">
-              <h2 className="text-primary">Education</h2>
+            <div className="profile-edu bg-white p-2 bord">
+              <h2 className="text-primary profileheadings">Education</h2>
               {profile.education.length > 0 ? (
                 <Fragment>
                   {profile.education.map((education) => (

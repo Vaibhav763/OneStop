@@ -67,6 +67,7 @@ img {
   font-size: 3rem;
   line-height: 1.2;
   margin-bottom: 0.6rem;
+  color: white;
 }
 
 .lead {
@@ -217,6 +218,9 @@ img {
 .alert-success {
   background-color: #163c5c;
   color: #fff;
+}
+.bc {
+  background-color: #163c5c;
 }
 
 .btn-white,
@@ -384,6 +388,7 @@ button {
   grid-gap: 2rem;
   padding: 1rem;
   line-height: 1.8;
+  background-color: #9eccf4;
   margin-bottom: 1rem;
   border-radius: 15px;
   border-style: solid;
@@ -467,6 +472,7 @@ button {
 
 .profile-github {
   grid-area: github;
+  padding: 10px;
 }
 
 .profile-github .repo {
@@ -535,6 +541,7 @@ button {
 
   .large {
     font-size: 2rem;
+    
   }
 
   .lead {
@@ -650,6 +657,26 @@ button {
   font-family: cursive;
 }
 
+.profileheadings {
+  margin: 20px 0px;
+  font-family: cursive;
+}
+
+.basictext {
+  font-family: cursive;
+  padding: 0 0 0 5px;
+}
+.bordr {
+ border-radius: 7px;
+ padding:7px;
+}
+.bord {
+  border: #163c5c solid 2.5px
+}
+
+.bordless {
+  border: #163c5c solid 1.5px
+}
 @media screen and (max-width: 1000px) {
   .loading-container {
     margin-left: 10%;

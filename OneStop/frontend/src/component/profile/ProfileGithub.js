@@ -9,30 +9,31 @@ const ProfileGithub = ({profile: {repos}, username, getGithubRepos}) => {
         getGithubRepos(username);
     }, [getGithubRepos, username])
     return (
-        <div className="profile-github">
-            <h2 class="text-primary my-1">
+        <div className="profile-github bord">
+            <h2 class="text-primary my-3 profileheadings">
                 <i class="fab fa-github"></i> Github Repos
             </h2>
             {repos.length > 0 ? (
-                <Fragment>
+                <Fragment className="m-3 bordr">
                 {repos== null ? (<Spinner/>) : (repos.map(repo => (
+                    <div className=''>
                     <div class="repo bg-white p-1 my-1" key={repo.id}>
                     <div>
-                    <h4><a href={repo.html_url} target="_blank"
+                    <h4 className='p-3'><a href={repo.html_url} target="_blank"
                         rel="noopener noreferrer">{repo.name}</a></h4>
-                    <p>
-                        {repo.description}
-                    </p>
+
+                    <p className='basictext'> {repo.description} </p>
                     </div>
                     <div>
-                    <ul>
-                        <li class="badge badge-primary">Stars: {repo.stargazers_count}</li>
-                        <li class="badge badge-dark">Watchers: {repo.watchers_count}</li>
-                        <li class="badge badge-light">Forks: {repo.forks_count}</li>
-                    </ul>
+                        <ul>
+                            <li class="my-2 badge badge-primary bordr">Stars: {repo.stargazers_count}</li>
+                            <li class="my-2 badge badge-light bordr">Forks: {repo.forks_count}</li>
+                        </ul>
                     </div>
                 </div>
+                </div>
                 )))}
+
                 </Fragment>
             ) : ( 
                 <h4>No repositories found.</h4>

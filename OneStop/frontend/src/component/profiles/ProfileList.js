@@ -38,7 +38,7 @@ const ProfileList = ({profiles,  title, loading}) => {
                 developers
               </p>
              
-              <div className="container mt-2 dashbox">
+              <div className="container mt-2 dashbox ">
                 <form onSubmit={onSubmit}>
                   <InputGroup className="mb-3">
                     <FormControl
