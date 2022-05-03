@@ -53,6 +53,9 @@ img {
   /* margin-bottom: 3rem; */
 }
 
+.input-group .btn {
+  border-style: solid;
+}
 /* Text Styles*/
 .x-large {
   font-size: 4rem;
@@ -382,6 +385,9 @@ button {
   padding: 1rem;
   line-height: 1.8;
   margin-bottom: 1rem;
+  border-radius: 15px;
+  border-style: solid;
+  border-color:  #163c5c ;
 }
 
 /* Profile Page */

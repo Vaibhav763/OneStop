@@ -7,30 +7,24 @@
     "start": "node server",
     "server": "nodemon server",
     "frontend": "npm start --prefix frontend",
-<<<<<<< HEAD
     "video_chat": "npm start --prefix video_chat",
     "dev": "concurrently \"npm run server\" \"npm run video_chat\"  \"npm run frontend\" "
-=======
-    "dev": "concurrently \"npm run server\" \"npm run frontend\""
->>>>>>> cdc18fe88b438293b71cdd2e7f6da3b3db319c50
   },
   "author": "Vaibhav",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "browserslist": "^4.20.3",
+    "caniuse-lite": "^1.0.30001335",
     "config": "^3.3.6",
     "express": "^4.17.1",
     "express-validator": "^6.12.2",
     "gravatar": "^1.8.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
-<<<<<<< HEAD
+    "nodemailer": "^6.7.4",
     "request": "^2.88.2",
     "uuid": "^8.3.2"
-=======
-    "nodemailer": "^6.7.4",
-    "request": "^2.88.2"
->>>>>>> cdc18fe88b438293b71cdd2e7f6da3b3db319c50
   },
   "devDependencies": {
     "concurrently": "^6.3.0",

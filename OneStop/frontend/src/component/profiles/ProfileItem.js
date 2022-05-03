@@ -17,17 +17,15 @@ const ProfileItem = ({
     <div className='profile bg-light'>
       <img src={avatar} alt='' className='round-img' />
       <div>
-        <h2>{name}</h2>
-        <p> {bio}</p>
-        <p>
-          {status} {company && <span> at {company}</span>}
-        </p>
-        <p className='my-1'>{location && <span>{location}</span>}</p>
+        <h2 className='headings'>{name} </h2>
+        <p className='text'> {bio} From {location && <span>{location}</span>}  </p>
+        <p className='text'> {status} {company && <span> at {company}</span>} </p>
         <Link to={`/profile/${_id}`} className='btn btn-primary'>
           View Profile
         </Link>
       </div>
       <ul>
+        <p className='text'>Skills</p> 
         {skills.slice(0, 4).map((skill, index) => (
           <li key={index} className='text-primary'>
             <i className='fas fa-check' /> {skill}

@@ -36,6 +36,7 @@ const About= ({
         <button onClick={changePassword} className='btn btn-primary' >
           Reset Password
         </button>
+      
       </div>
       <ul>
         <p className='text'>Skills</p>
@@ -45,7 +46,11 @@ const About= ({
           </li>
         ))}
       </ul>
-      
+
+      <Link to={`/profile/${_id}`} className='btn btn-primary'>
+          View Profile
+        </Link>
+    
     </div>
   );
 };

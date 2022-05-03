@@ -37,7 +37,8 @@ const ProfileList = ({profiles,  title, loading}) => {
                 <i className='fab fa-connectdevelop' /> Browse and connect with
                 developers
               </p>
-              <div className="container mt-2">
+             
+              <div className="container mt-2 dashbox">
                 <form onSubmit={onSubmit}>
                   <InputGroup className="mb-3">
                     <FormControl
@@ -53,7 +54,8 @@ const ProfileList = ({profiles,  title, loading}) => {
                   </InputGroup>
                 </form>
               </div>
-              <div className='profiles'>
+              
+              <div className='profiles dashbox'>
                 {filteredProfiles.length > 0 ? (
                   filteredProfiles.map(profile => (
                     <ProfileItem key={profile._id} profile={profile} />
