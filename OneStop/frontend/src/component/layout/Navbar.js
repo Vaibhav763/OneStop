@@ -10,6 +10,16 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
   const authLinks = (
     <ul>
       <li>
+      <OverlayTrigger
+          placement='bottom'
+          overlay={
+            <Tooltip id={`tooltip-bottom`}>
+              Video Call
+            </Tooltip>
+          }
+        >
+          <a href="http://localhost:3030/"><i class="fa fa-video-camera"></i></a>
+        </OverlayTrigger>
         <OverlayTrigger
           placement='bottom'
           overlay={
