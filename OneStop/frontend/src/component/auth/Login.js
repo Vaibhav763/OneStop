@@ -6,6 +6,7 @@ import { login } from '../../actions/auth';
 import ParticlesBg from 'particles-bg';
 
 const Login = ({ login, isAuthenticated }) => {
+  
   const [formData, setFormData] = useState({
     email: '',
     password: ''

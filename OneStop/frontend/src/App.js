@@ -14,20 +14,27 @@ import Profile from './component/profile/Profile';
 import Posts from './component/posts/Posts';
 import Post from './component/post/Post';
 import NotFound from './component/layout/NotFound';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Provider} from 'react-redux';
-import store from './store'
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
-import { LOGOUT } from './actions/types';
-
-import './App.css';
 import Topics from './component/topics/Topics';
 import Questions from './component/questions/Questions';
 import TopicPosts from './component/questions/TopicPosts';
 import ProfileFollowers from './component/profile/ProfileFollowers';
 import ProfileFollowed from './component/profile/ProfileFollowed';
 import ChangePassword from './component/profile_forms/ChangePassword';
+
+// for routing of our components
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
+// to link redux store to our React components
+import {Provider} from 'react-redux';
+import store from './store'
+
+// to manage authentication of user (login/logout)
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
+import { LOGOUT } from './actions/types';
+
+// css file
+import './App.css';
 
 const App = () => {
   useEffect(() => {
@@ -43,6 +50,8 @@ const App = () => {
     });
   }, []);
 
+  //Proivder work as glue between react and redux
+  
   return (
     <Provider store={store}>
     <Router>
@@ -79,4 +88,3 @@ const App = () => {
 
 export default App;
 
-//Proivder work as glue between react and redux

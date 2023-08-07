@@ -39,7 +39,7 @@ router.post(
     // destructuring the entries entered 
     const { name, email, password } = req.body;
 
-    // Looking if user already exists
+    // Looking if user already exists in database (User Model)
     try {
       let user = await User.findOne({ email });
 
@@ -78,6 +78,7 @@ router.post(
 
     // creating json web token for authenication and logging in purpose
 
+    // payload is the object containing the id of user
       const payload = {
         user: {
           id: user.id

@@ -11,3 +11,5 @@ ReactDOM.render(
 );
 
 reportWebVitals();
+
+// document.getElementById('root') this line here is used to link our HTML file in Javascript 

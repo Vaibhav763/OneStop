@@ -1,4 +1,5 @@
 const express = require('express'); 
+const app = express(); 
 
 // connecting mongo DB
 const connectDB = require('./config/db');
@@ -10,12 +11,11 @@ const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 const auth = require('./routes/api/auth');
 
-const app = express(); 
-
-// middleware that allow us to handle raw json
+// middleware that allow us to handle raw json (built in middleware)
+// express.json() - parses the incoming request object with JSON payloads.
 app.use(express.json({extended:false}));
 
-// Using different Routes as middleware
+// Using different Routes as middleware (Application Level middleware)
  app.use('/api/users', users);
  app.use('/api/profile', profile);
  app.use('/api/posts', posts);

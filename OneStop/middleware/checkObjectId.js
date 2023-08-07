@@ -11,4 +11,4 @@ module.exports = checkObjectId;
 
 
 // this file basically checks the correct ObjectID
-// by coverting the  string userid to mongoose object id
+// by coverting the  string user id to mongoose object id

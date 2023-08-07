@@ -6,6 +6,7 @@ const db= config.get('mongoURI');
 
 // this function connects our application to our database
 
+// we have used await here because it returns a promise 
 const connectDB = async () => {
 
     try{

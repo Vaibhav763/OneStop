@@ -13,4 +13,4 @@ export default combineReducers({
   topic
 });
 
-// tihs file basically combines all the reducers we have  
+// this file basically combines all the reducers we have  

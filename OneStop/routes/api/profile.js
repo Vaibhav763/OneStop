@@ -51,7 +51,7 @@ router.post(
       }
   
 
-     // destructure the request
+     // destructure the request to get values of each parameter
       const {
         company,
         handle,
@@ -69,7 +69,7 @@ router.post(
         
        } = req.body;
 
-        // Get fields
+        // profileFields is a object over here which will update the database with the values
         const profileFields = {};
         profileFields.user = req.user.id;
         if (handle) profileFields.handle = handle;
@@ -87,6 +87,7 @@ router.post(
                                 : skills.split(',').map((skill) => ' ' + skill.trim())
         }
   
+        // creating social object
         profileFields.social = {};
         if (youtube) profileFields.social.youtube = youtube;
         if (twitter) profileFields.social.twitter = twitter;

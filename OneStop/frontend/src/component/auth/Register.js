@@ -9,6 +9,7 @@ import ParticlesBg from 'particles-bg';
 import { connect } from 'react-redux';
 
 const Register = ({ setAlert , register ,isAuthenticated}) => {
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -115,7 +116,7 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, { setAlert, register})(Register);
 
-// connect takes two argument first the state we wanna map and other the object with actions
+// connect takes two argument first the state we wanna map and other the object with actions that will allow us to use these object actions as props
 
 
  // * = 

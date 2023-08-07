@@ -7,7 +7,6 @@ import {
   GET_REPOS,
   FOLLOW_USER,
   UNFOLLOW_USER
-  // GET_REPOS,
   // NO_REPOS
 } from '../actions/types';
 
