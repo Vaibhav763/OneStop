@@ -30,13 +30,13 @@ The base problem for this project was the unavailability of a good platform to i
 - Different pages of topic tags for easy exploration.
 - Selecting topics using tags.
 - Searching Users and Posts through keywords.
-- Forget Password Option available.
-- Change profile picture of the user.
 
 
 ### `Future Scope:`
 
  - Deploy the website for real life implementations.
+ - Forget Password Option available.
+ - Change profile picture of the user.
  - Launching the website across different institutions.
  - Peer-to-peer chat and video call feature for mock interviews.
 
